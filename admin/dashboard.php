@@ -1,3 +1,5 @@
+<?php include "../includes/header.php"; ?>
+
 <?php
 
 include "../includes/auth.php";
@@ -5,6 +7,7 @@ requireAdmin();
 
 include "../includes/header.php";
 include "../includes/database.php";
+include "../includes/admin-header.php";
 ?>
 
 <h1>👑 Admin Dashboard</h1>
@@ -45,5 +48,8 @@ Welcome back,
         <h2>⚙️ Settings</h2>
         <p>Website configuration</p>
     </a>
+
+</div>
+</main>
 
 </div>

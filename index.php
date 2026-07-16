@@ -1,8 +1,53 @@
+<?php include "includes/header.php"; ?>
+
+<?php
+include "includes/header.php";
+?>
+
 <!-- Version 4.0.0 | Beta Version 4.0 | Liquid Glass climate command center renovation -->
 
 
 
-<?php include "includes/header.php"; ?>
+<?php
+
+include "includes/database.php";
+
+
+$donationQuery = $conn->query("
+    SELECT 
+        SUM(amount) AS totalMoney,
+        SUM(trees) AS totalTrees
+    FROM donations
+");
+
+
+$donationData = $donationQuery->fetch_assoc();
+
+
+$totalMoney = $donationData["totalMoney"] ?? 0;
+
+$totalTrees = $donationData["totalTrees"] ?? 0;
+
+
+$moneyGoal = 5000;
+$treeGoal = 500;
+
+
+$moneyPercent = ($totalMoney / $moneyGoal) * 100;
+$treePercent = ($totalTrees / $treeGoal) * 100;
+
+
+if($moneyPercent > 100){
+    $moneyPercent = 100;
+}
+
+
+if($treePercent > 100){
+    $treePercent = 100;
+}
+
+
+?>
 <body>
 
     <div class="popup donate-popup" id="donatePopup" aria-hidden="true">
@@ -82,6 +127,7 @@
                 <p>Driving education and direct action to halt the global climate crisis.</p>
                 <a href="about.html" class="btn-primary"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn More</a>
             </div>
+            
             <div class="intro-card">
                 <i class="fas fa-tools fa-3x" aria-hidden="true"></i>
                 <h2>Active Projects</h2>
@@ -198,36 +244,129 @@
         </div>
 <!-- Elfsight Before and After Slider | Climate Change Before and After Slider -->
 <div class="elfsight-app-ea01090c-eff4-45d4-a0e9-6faea39bbff7" data-elfsight-app-lazy></div>
-        <section class="impact-stats action-rings-section reveal-on-scroll" aria-labelledby="impact-title">
-            <span class="section-kicker">Action Rings</span>
-            <h2 id="impact-title">Live Impact Tracker</h2>
-            <div class="stat-grid">
-                <div class="stat-box">
-                    <div class="stat-ring" style="--value: 5; --ring-color: #61d394;"><span>5%</span></div>
-                    <strong>Trees Planted</strong>
-                    <div class="progress-container" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width:5%"></div>
-                    </div>
-                    <span>500 / 10,000</span>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-ring" style="--value: 15; --ring-color: #f2c94c;"><span>15%</span></div>
-                    <strong>Funding Raised</strong>
-                    <div class="progress-container" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width:15%"></div>
-                    </div>
-                    <span>$15,000 / $100,000</span>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-ring" style="--value: 20; --ring-color: #66d9ef;"><span>20%</span></div>
-                    <strong>Members Joined</strong>
-                    <div class="progress-container" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar" style="width:20%"></div>
-                    </div>
-                    <span>200 / 1,000</span>
-                </div>
-            </div>
-        </section>
+    <section class="impact-stats action-rings-section reveal-on-scroll" aria-labelledby="impact-title">
+
+<span class="section-kicker">
+Action Rings
+</span>
+
+
+<h2 id="impact-title">
+Live Impact Tracker
+</h2>
+
+
+
+<div class="stat-grid">
+
+
+<div class="stat-box">
+
+
+<div class="stat-ring" style="--value: <?php echo $treePercent; ?>;">
+<span>
+<?php echo round($treePercent); ?>%
+</span>
+</div>
+
+
+<strong>
+Trees Planted
+</strong>
+
+
+<div class="progress-container">
+
+<div class="progress-bar" 
+style="width: <?php echo $treePercent; ?>%">
+</div>
+
+</div>
+
+
+<span>
+<?php echo $totalTrees; ?> / <?php echo $treeGoal; ?>
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="stat-box">
+
+
+<div class="stat-ring" style="--value: <?php echo $moneyPercent; ?>;">
+<span>
+<?php echo round($moneyPercent); ?>%
+</span>
+</div>
+
+
+<strong>
+Funding Raised
+</strong>
+
+
+<div class="progress-container">
+
+<div class="progress-bar"
+style="width: <?php echo $moneyPercent; ?>%">
+</div>
+
+</div>
+
+
+<span>
+$<?php echo number_format($totalMoney,2); ?> / $<?php echo number_format($moneyGoal); ?>
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="stat-box">
+
+
+<div class="stat-ring" style="--value: 20;">
+<span>
+20%
+</span>
+</div>
+
+
+<strong>
+Members Joined
+</strong>
+
+
+<div class="progress-container">
+
+<div class="progress-bar"
+style="width:20%">
+</div>
+
+</div>
+
+
+<span>
+200 / 1,000
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
 <!-- Elfsight Audio Player | Climate Change Club Website Widget -->
 <div class="elfsight-app-76a17517-75e9-4e86-815d-12184c67aff7" data-elfsight-app-lazy></div>
 

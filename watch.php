@@ -1,4 +1,4 @@
-﻿<?php include "includes/header.php"; ?>
+<?php include "includes/header.php"; ?>
 
 
 <header class="watch-hero" aria-labelledby="watch-title">

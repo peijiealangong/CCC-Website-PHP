@@ -1,4 +1,4 @@
-﻿<?php include "includes/header.php"; ?>
+<?php include "includes/header.php"; ?>
 
 <header class="page-hero page-hero-about">
     <div class="page-hero-content reveal-on-scroll">

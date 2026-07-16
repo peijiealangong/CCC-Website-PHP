@@ -1,4 +1,4 @@
-﻿<?php include "includes/header.php"; ?>
+<?php include "includes/header.php"; ?>
 
 <style>
         :root { --clr-dark: #333; --clr-light: #fff; }

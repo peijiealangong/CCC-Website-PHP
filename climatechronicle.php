@@ -1,4 +1,4 @@
-﻿<?php include "includes/header.php"; ?>
+<?php include "includes/header.php"; ?>
 
 <header class="page-hero page-hero-chronicle">
     <div class="page-hero-content reveal-on-scroll">
@@ -7,20 +7,75 @@
         <p>Important climate stories, student observations, and global warming context.</p>
     </div>
 </header>
+<?php
+
+include "includes/database.php";
+
+
+$result = $conn->query(
+"
+SELECT
+
+title,
+content,
+created_at
+
+FROM articles
+
+WHERE published = 1
+
+ORDER BY created_at DESC
+
+"
+);
+
+
+if ($result && $result->num_rows > 0):
+
+
+while($article = $result->fetch_assoc()):
+
+?>
+
+
+<article class="chronicle-article">
+
+
+<h2>
+<?php echo htmlspecialchars($article["title"]); ?>
+</h2>
+
+
 <p>
-Weâ€™ll start with the small stuff. Have you ever seen trash in the ocean? Iâ€™ll take whatever you said as a yes, since our oceans are very polluted. This greatly impacts sea life. You might be wondering, how is this something small? Well, the ocean pollution in general isnâ€™t small. But there are many small effects. For example, a whale was found washed ashore with eighty pounds of plastic in its stomach! As you would expect, it was dead. Sorry to the squeamish, I never wished to write that sentence. But this is just one example. Another example is the great pacific garbage patch. Over the years, trash gathered in this specific spot. It is estimated that over one million sea birds and 100,000 marine mammals die each year, many deaths because of the great pacific garbage patch.
-</p>
-<p>
-Beyond the global issue of ocean pollution, specific regions face unique and intensifying challenges from climate change. China, as a highly populated and geographically diverse nation, is particularly vulnerable. The country has experienced a faster rate of warming than the global average, leading to a surge in extreme weather events. This includes more frequent and intense heatwaves, devastating floods, and prolonged droughts, which strain critical resources like water and impact agricultural yields. Moreover, China's extensive coastline, home to economically vital cities, faces severe threats from rising sea levels and land subsidence. This combination significantly increases the risk of coastal flooding and puts millions of people and vast infrastructure at peril, demanding urgent and extensive adaptation measures.
-</p>
-<p>
-Also, in North America, many impacts of Climate Change have been noticed, especially trash, and others. More on North America will be provided soon.
-</p>
-<p>
-One drastic thing that climate change has done is make the world become warmer. Temperatures are rising because greenhouse gases like carbon dioxide and methane trap some of the outgoing infrared radiation, preventing it from going into space. In 2024 it got up to 421.73 ppm, which is about 50% more than pre Industrial Revolution. <b> Note, ppm stands for parts per million </b>
+<?php echo nl2br(htmlspecialchars($article["content"])); ?>
 </p>
 
-<p> More will be added later. See you soon! </p>
+
+<small>
+Published:
+<?php echo htmlspecialchars($article["created_at"]); ?>
+</small>
+
+
+</article>
+
+
+<?php
+
+endwhile;
+
+
+else:
+
+?>
+
+
+<p>
+More climate articles will be added soon! 🌎
+</p>
+
+
+<?php endif; ?>
 <p>
 <div class="color-panel">
 <button onclick="changeColor('blue')">Change Background: Blue</button>

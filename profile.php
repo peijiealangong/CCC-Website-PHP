@@ -1,25 +1,59 @@
+<?php include "includes/header.php"; ?>
+
 <?php
 
-session_start();
+include "includes/auth.php";
+requireLogin();
 
+include "includes/database.php";
 include "includes/header.php";
 
 
-if (!isset($_SESSION["user_id"])) {
+$user_id = $_SESSION["user_id"];
 
-    echo "<p>You must be logged in.</p>";
-    exit;
 
-}
+$stmt = $conn->prepare(
+    "SELECT username, email FROM users WHERE id=?"
+);
+
+
+$stmt->bind_param(
+    "i",
+    $user_id
+);
+
+
+$stmt->execute();
+
+
+$user = $stmt->get_result()->fetch_assoc();
+
 
 ?>
 
 
-<h1>
-Welcome, <?php echo $_SESSION["username"]; ?>! 🌱
-</h1>
+<h1>👤 My Profile</h1>
+
+
+<div class="profile-card">
+
+
+<h2>
+<?php echo htmlspecialchars($user["username"]); ?>
+</h2>
 
 
 <p>
-This is your CCC profile page.
+📧 Email:
+
+<?php echo htmlspecialchars($user["email"]); ?>
+
 </p>
+
+
+<a href="my-orders.php">
+📦 View My Orders
+</a>
+
+
+</div>
