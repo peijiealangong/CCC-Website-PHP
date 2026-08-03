@@ -3,16 +3,17 @@
 // A stopped MySQL service should not turn every PHP page into a blank page.
 mysqli_report(MYSQLI_REPORT_OFF);
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "ccc_database";
+$host = "sql311.infinityfree.com";
+$username = "if0_42433740";
+$password = "oTH1Kttf54uLqCX";
+$database = "if0_42433740_ccc_database";
+$port = 3306;
 
-$conn = @new mysqli($host, $username, $password, $database);
+$conn = @new mysqli($host, $username, $password, $database, $port);
 $dbAvailable = $conn instanceof mysqli && !$conn->connect_errno;
 $dbError = $dbAvailable
     ? ""
-    : "The database is currently unavailable. Start MySQL in XAMPP to enable live data.";
+    : "The database is currently unavailable. Check the InfinityFree database credentials and hosting status.";
 
 if (!$dbAvailable) {
     // Keep legacy query pages renderable while making every database
