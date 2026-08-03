@@ -1,100 +1,42 @@
-<?php include "includes/header.php"; ?>
-
 <?php
-
+$siteName = "Climate Change Club";
+include "includes/header.php";
 include "includes/auth.php";
 requireLogin();
-
 include "includes/database.php";
-$user_id = $_SESSION["user_id"];
-$orders = false;
 
+$orders = false;
 if ($dbAvailable) {
     $stmt = $conn->prepare(
-"
-SELECT 
-product,
-quantity,
-status,
-created_at
-
-FROM orders
-
-WHERE user_id=?
-
-ORDER BY id DESC
-"
+        "SELECT product, quantity, status, created_at FROM orders WHERE user_id = ? ORDER BY id DESC"
     );
-
-
-    $stmt->bind_param("i", $user_id);
-
-
+    $stmt->bind_param("i", $_SESSION["user_id"]);
     $stmt->execute();
-
-
     $orders = $stmt->get_result();
 }
-
-
 ?>
 
+<main class="content-page">
+    <section class="content-card">
+        <i class="fas fa-box" aria-hidden="true"></i>
+        <h1>My Orders</h1>
+        <?php if (!$dbAvailable): ?>
+            <p class="database-message"><?php echo htmlspecialchars($dbError); ?></p>
+        <?php elseif (!$orders || $orders->num_rows === 0): ?>
+            <p>You do not have any orders yet.</p>
+        <?php else: ?>
+            <div class="resource-grid">
+                <?php while ($order = $orders->fetch_assoc()): ?>
+                    <article class="content-card order-card">
+                        <h2><?php echo htmlspecialchars($order["product"]); ?></h2>
+                        <p><strong>Quantity:</strong> <?php echo (int) $order["quantity"]; ?></p>
+                        <p><strong>Status:</strong> <?php echo htmlspecialchars($order["status"]); ?></p>
+                        <p><strong>Placed:</strong> <?php echo htmlspecialchars($order["created_at"]); ?></p>
+                    </article>
+                <?php endwhile; ?>
+            </div>
+        <?php endif; ?>
+    </section>
+</main>
 
-<h1>📦 My Orders</h1>
-
-
-<?php if (!$dbAvailable): ?>
-<p class="database-message"><?php echo htmlspecialchars($dbError); ?></p>
-<?php else: ?>
-
-<?php if($orders->num_rows == 0): ?>
-
-
-<p>
-You have no orders yet.
-</p>
-
-
-<?php endif; ?>
-
-
-
-<?php while($order=$orders->fetch_assoc()): ?>
-
-
-<div class="order-card">
-
-
-<h2>
-<?php echo htmlspecialchars($order["product"]); ?>
-</h2>
-
-
-<p>
-Quantity:
-<?php echo $order["quantity"]; ?>
-</p>
-
-
-<p>
-Status:
-<strong>
-<?php echo htmlspecialchars($order["status"]); ?>
-</strong>
-</p>
-
-
-<p>
-Date:
-<?php echo $order["created_at"]; ?>
-</p>
-
-
-</div>
-
-
-<hr>
-
-
-<?php endwhile; ?>
-<?php endif; ?>
+<?php include "includes/footer.php"; ?>

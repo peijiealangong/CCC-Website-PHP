@@ -1,48 +1,46 @@
-// ✅ Initialize EmailJS
-emailjs.init("nP3uTecuX7yRltzvW");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("contactStatus");
+    const submitButton = form?.querySelector('[type="submit"]');
+    if (!form || !status || !submitButton) return;
 
-function sendEmail() {
-    // ✅ Get form values
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+    const setStatus = (message, type = "") => {
+        status.textContent = message;
+        status.className = `form-status${type ? ` is-${type}` : ""}`;
+    };
 
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Message:", message);
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-    // ✅ Validate form input
-    if (!name || !email || !message) {
-        document.getElementById("confirmation").innerHTML = 
-            "<p style='color: red;'>Please fill in all fields before sending.</p>";
-        return;
-    }
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
-    // ✅ Send email through EmailJS
-    emailjs.send("service_irt14bl", "template_wnlfnbh", {
-        from_name: name,
-        from_email: email,
-        message: message
-    })
-    .then(function(response) {
-        console.log("✅ Email sent successfully!", response);
-        
-        // ✅ Show success message
-        document.getElementById("confirmation").innerHTML = 
-            "<p style='color: green;'>Your email has been sent successfully!</p>";
-        
-        // ✅ Clear form fields after sending
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-    }, function(error) {
-        console.log("❌ Failed to send email", error);
-        
-        // ❌ Show error message
-        document.getElementById("confirmation").innerHTML = 
-            "<p style='color: red;'>Oops! Something went wrong. Please try again.</p>";
+        if (typeof window.emailjs === "undefined") {
+            setStatus("The message service is unavailable right now. Please use the email link below.", "error");
+            return;
+        }
+
+        const formData = new FormData(form);
+        const originalLabel = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending…";
+        setStatus("Sending your message…");
+
+        try {
+            await window.emailjs.send("service_irt14bl", "template_wnlfnbh", {
+                from_name: String(formData.get("name") || ""),
+                from_email: String(formData.get("email") || ""),
+                message: String(formData.get("message") || "")
+            });
+            form.reset();
+            setStatus("Thanks — your message has been sent.", "success");
+        } catch (error) {
+            setStatus("We could not send your message. Please try again or use the email link below.", "error");
+        } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalLabel;
+        }
     });
-}
-
-// ✅ Confirm script is loaded
-console.log("sendEmail.js is loaded!");
+});

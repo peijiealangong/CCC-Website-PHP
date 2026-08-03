@@ -31,6 +31,12 @@ if (strpos($_SERVER["PHP_SELF"], "/admin/") !== false) {
     $basePath = "../";
 }
 
+$requestPath = parse_url($_SERVER["REQUEST_URI"] ?? "/", PHP_URL_PATH) ?: "/";
+if ($requestPath === "/") {
+    $requestPath = "/index.php";
+}
+$canonicalUrl = "https://climatechangeclub.pages.dev" . $requestPath;
+
 ?>
 
 
@@ -51,7 +57,7 @@ if (strpos($_SERVER["PHP_SELF"], "/admin/") !== false) {
 <meta name="theme-color" content="#0f3d38" />
 
 
-<link rel="canonical" href="https://climatechangeclub.pages.dev/" />
+<link rel="canonical" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, "UTF-8"); ?>" />
 
 
 <meta property="og:type" content="website" />
@@ -60,12 +66,13 @@ if (strpos($_SERVER["PHP_SELF"], "/admin/") !== false) {
 
 <meta property="og:description" content="Student-led climate projects, articles, videos, and climate action." />
 
-<meta property="og:url" content="https://climatechangeclub.pages.dev/" />
+<meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, "UTF-8"); ?>" />
 
 
 <meta name="twitter:card" content="summary_large_image" />
 
 <meta name="twitter:title" content="<?php echo htmlspecialchars($siteName); ?>" />
+<meta name="twitter:description" content="Student-led climate projects, articles, videos, and climate action." />
 
 
 
@@ -81,7 +88,7 @@ if (strpos($_SERVER["PHP_SELF"], "/admin/") !== false) {
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" referrerpolicy="no-referrer">
 
 
 <script src="<?php echo $basePath; ?>javascript.js" defer></script>
@@ -98,7 +105,7 @@ if (strpos($_SERVER["PHP_SELF"], "/admin/") !== false) {
 <header class="site-header">
 
 
-<nav class="site-nav">
+<nav class="site-nav" aria-label="Main navigation">
 
 
 
@@ -143,7 +150,7 @@ aria-label="Open menu"
 
 
 <li>
-<a href="<?php echo $basePath; ?>index.php">
+<a href="<?php echo $basePath; ?>index.php" data-nav-section="home">
 Home
 </a>
 </li>
@@ -153,12 +160,12 @@ Home
 
 <li class="dropdown">
 
-<button class="nav-menu-button" type="button">
-Club
+<button class="nav-menu-button" type="button" aria-expanded="false" aria-haspopup="true" data-nav-section="club">
+Club <span class="nav-caret" aria-hidden="true"></span>
 </button>
 
 
-<ul class="submenu">
+<ul class="submenu" aria-label="Club pages">
 
 
 <li>
@@ -194,12 +201,12 @@ Meetings
 <li class="dropdown">
 
 
-<button class="nav-menu-button" type="button">
-Resources
+<button class="nav-menu-button" type="button" aria-expanded="false" aria-haspopup="true" data-nav-section="resources">
+Resources <span class="nav-caret" aria-hidden="true"></span>
 </button>
 
 
-<ul class="submenu">
+<ul class="submenu" aria-label="Resource pages">
 
 
 <li>
@@ -240,7 +247,7 @@ Download App
 
 
 <li>
-<a href="<?php echo $basePath; ?>watch.php">
+<a href="<?php echo $basePath; ?>watch.php" data-nav-section="watch">
 Watch
 </a>
 </li>
@@ -249,9 +256,27 @@ Watch
 
 
 <li>
-<a href="<?php echo $basePath; ?>contact.php">
+<a href="<?php echo $basePath; ?>contact.php" data-nav-section="contact">
 Contact
 </a>
+</li>
+
+<li>
+<button class="nav-donate-button" id="donateButton" type="button">
+<i class="fas fa-heart" aria-hidden="true"></i> Donate
+</button>
+</li>
+
+<li class="dropdown">
+<button class="nav-menu-button" id="betaNavBtn" type="button" aria-expanded="false" aria-haspopup="true" data-nav-section="beta">
+Beta <span class="notification-dot" id="updateDot" aria-hidden="true"></span><span class="nav-caret" aria-hidden="true"></span>
+</button>
+<ul class="submenu" aria-label="Beta pages">
+<li><a href="<?php echo $basePath; ?>beta-test.php">Test Lab</a></li>
+<li><a href="<?php echo $basePath; ?>beta-docs.php">Documentation</a></li>
+<li><a href="<?php echo $basePath; ?>beta-report.php">Report a Problem</a></li>
+<li class="beta-logout-item"><button class="nav-logout" type="button" data-beta-logout>Logout</button></li>
+</ul>
 </li>
 
 
@@ -329,3 +354,12 @@ Register
 
 
 </header>
+
+<div class="popup donate-popup" id="donatePopup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="donate-title">
+    <div class="popup-content">
+        <button class="popup-close" type="button" aria-label="Close donation dialog">&times;</button>
+        <h2 id="donate-title">Support trees with <?php echo htmlspecialchars($siteName); ?></h2>
+        <p>Your gift helps fund tree planting and climate education.</p>
+        <div class="gfm-embed" data-url="https://www.gofundme.com/f/plant-trees-with-the-climate-change-club/widget/small?attribution_id=sl%3Aea4c8cf4-cfa2-4f1d-8902-a7b5adf17d00"></div>
+    </div>
+</div>

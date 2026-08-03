@@ -1,169 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-68D6N5XQ6D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<?php
+$siteName = "Climate Change Club";
+include "includes/header.php";
+?>
 
-  gtag('config', 'G-68D6N5XQ6D');
-</script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#0f3d38">
-  <link rel="canonical" href="https://climatechangeclub.pages.dev/projects.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Our Projects | Climate Change Club">
-  <meta property="og:description" content="This page is all about the projects of the Climate Change Club. This is where you can find what the Climate Change Club is doing. You can even find out about our goals!">
-  <meta property="og:url" content="https://climatechangeclub.pages.dev/projects.html">
-  <meta property="og:image" content="https://climatechangeclub.pages.dev/images/stop-climate-change-background.webp">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Our Projects | Climate Change Club">
-  <meta name="twitter:description" content="This page is all about the projects of the Climate Change Club. This is where you can find what the Climate Change Club is doing. You can even find out about our goals!">
-  <meta name="twitter:image" content="https://climatechangeclub.pages.dev/images/stop-climate-change-background.webp">
-
-
-<meta name="description" content="This page is all about the projects of the Climate Change Club. This is where you can find what the Climate Change Club is doing. You can even find out about our goals!">
-    <title>Our Projects | Climate Change Club</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="javascript.js" defer></script>
-
-</head>
-<body>
-<header class="site-header">
-    <nav class="site-nav" aria-label="Main Navigation">
-        <a class="nav-logo" href="index.php" data-nav-section="home">
-            <span class="brand-mark" aria-hidden="true">CCC</span>
-            <span>Climate Change Club</span>
-        </a>
-        <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open main menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <ul id="primary-navigation" class="nav-list" data-visible="false">
-            <li><a href="index.php" data-nav-section="home">Home</a></li>
-            <li class="dropdown">
-                <button class="nav-menu-button" type="button" aria-expanded="false" data-nav-section="club">Club<span class="nav-caret" aria-hidden="true"></span></button>
-                <ul class="submenu" aria-label="Club pages">
-                    <li><a href="about.php">About</a></li>
-                    <li><a href="projects.php">Projects</a></li>
-                    <li><a href="meetings.php">Meetings</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <button class="nav-menu-button" type="button" aria-expanded="false" data-nav-section="resources">Resources<span class="nav-caret" aria-hidden="true"></span></button>
-                <ul class="submenu" aria-label="Resources pages">
-                    <li><a href="notices.php">Notices</a></li>
-                    <li><a href="articles.php">Articles</a></li>
-                    <li><a href="climatechronicle.php">The Climate Chronicle</a></li>
-                    <li><a href="download.php">Download App</a></li>
-                </ul>
-            </li>
-            <li><a href="watch.php" data-nav-section="watch">Watch</a></li>
-            <li><button class="nav-donate-button" id="donateButton" type="button">Donate</button></li>
-            <li><a href="contact.php" data-nav-section="contact">Contact</a></li>
-            <li class="dropdown">
-                <button class="nav-menu-button" type="button" id="betaNavBtn" aria-expanded="false" data-nav-section="beta">Beta Features<span class="notification-dot" id="updateDot" aria-hidden="true"></span><span class="nav-caret" aria-hidden="true"></span></button>
-                <ul class="submenu" aria-label="Beta pages">
-                    <li><a href="beta-test.php">Test Lab</a></li>
-                    <li><a href="beta-docs.php">Documentation (No Login Required)</a></li>
-                    <li><a href="beta-report.php">Report a Problem</a></li>
-                    <li class="beta-logout-item"><button class="nav-logout" type="button" data-beta-logout>Logout</button></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="popup donate-popup" id="donatePopup" aria-hidden="true">
-        <div class="popup-content">
-            <button class="popup-close" type="button" aria-label="Close donate popup">&times;</button>
-            <h2>Support Trees with Climate Change Club</h2>
-            <p>Your gift helps us plant trees and fund climate education today.</p>
-            <div class="gfm-embed" data-url="https://www.gofundme.com/f/plant-trees-with-the-climate-change-club/widget/small?sharesheet=undefined&attribution_id=sl:ea4c8cf4-cfa2-4f1d-8902-a7b5adf17d00"></div>
-</div>
-    </div>
-<div class="nav-widget elfsight-app-15f6acf7-38c9-47bb-9d32-bafd4fa48ab0" data-elfsight-app-lazy></div>
-</header>
 <header class="page-hero page-hero-projects">
     <div class="page-hero-content reveal-on-scroll">
-        <span class="page-kicker">Active Work</span>
+        <span class="page-kicker">Active work</span>
         <h1>Our Projects</h1>
-        <p>Explore the campaigns, presentations, and sustainability efforts we are building.</p>
+        <p>Campaigns and learning projects that make climate action visible and achievable.</p>
     </div>
 </header>
-<!-- Project Listings -->
-    <section>
-        <article>
-            <h2>🌱 Tree Planting Initiative</h2>
-            <p>We are planning to plant trees to help reduce our world's greenhouse gas emissions.</p>
-        </article>
 
-        <article>
-            <h2>♻️ Recycling Drive</h2>
-            <p>We are planning to hold a recycling drive for our schools in the Pittsford School District! Get involved!😊</p>
+<main class="content-page">
+    <section class="feature-grid" aria-label="Current projects">
+        <article class="feature-card">
+            <i class="fas fa-tree" aria-hidden="true"></i>
+            <h2>Tree Planting Initiative</h2>
+            <p>We are raising funds to plant trees that help reduce greenhouse-gas emissions and support healthier neighborhoods.</p>
         </article>
-
-        <article>
-            <h2>🌍 Sustainability Meetings</h2>
-            <p>We host meetings to organize and make a bigger impact.</p>
+        <article class="feature-card">
+            <i class="fas fa-recycle" aria-hidden="true"></i>
+            <h2>Recycling Drive</h2>
+            <p>We are planning a school recycling drive for the Pittsford School District and welcoming student ideas for it.</p>
         </article>
-   
-        <article>
-            <h2> Presentations </h2>
-            <p> We are currently working on presentations for the Climate Change Club of 7 people, but eventually we are hoping to spread our range of presentations. </p>
+        <article class="feature-card">
+            <i class="fas fa-people-group" aria-hidden="true"></i>
+            <h2>Sustainability Meetings</h2>
+            <p>Meetings give members a place to plan projects, share research, and turn good ideas into a larger impact.</p>
         </article>
-
-        <article>
-            <h2> 💖Donation </h2>
-	    <p> Our club is planning to donate money to the Sierra Club 🌲funded by John Muir to help support planting trees. </p>
-
     </section>
-<p>
-<div class="color-panel">
-<button onclick="changeColor('blue')">Change Background: Blue</button>
-<button onclick="changeColor('white')">Change Background: White</button>
-<button onclick="changeColor('#a8dadc')">Ocean Blue</button>
-<button onclick="changeColor('#2a9d8f')">Rainforest Green</button>
-<button onclick="changeColor('#f4a261')">Sunset Orange</button>
-<button onclick="changeColor('red')">Red</button>
-<button onclick="changeColor('lightblue')">Light Blue</button>
-<button onclick="changeColor('green')">Green</button>
-<button onclick="changeColor('')">Reset Background</button>
 
-  <button onclick="changeColor('#264653')">🌊 Ocean Depth</button>
-  <button onclick="changeColor('#2a9d8f')">🌿 Forest Floor</button>
-  <button style="background-color: #f4d35e; color: #222;" onclick="changeColor('#f4d35e')">☀️ Solar Glow</button>
-  <button onclick="changeColor('#e63946')">🔥 Wildfire</button>
-  <button onclick="changeColor('#a8dadc')">❄️ Polar Ice</button>
-  <button onclick="changeColor('#e9c46a')">🌾 Desert Sand</button>
-  <button onclick="changeColor('#6c757d')">🌪️ Storm Sky</button>
-  <button onclick="changeColor('#ffcad4')">🌸 Spring Bloom</button>
-  <button onclick="changeColor('#5e548e')">🌌 Midnight</button>
-  <button onclick="changeColor('#d8f3dc')">🌬️ Wind Whisper</button>
-</div>
-  </p>
-<!-- Footer -->
-<footer>
-    <p><strong>Climate Change Club</strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0</p>
-</footer>
-<!-- Elfsight Accessibility | Climate Change Club Website Accessibility button -->
-<div class="elfsight-app-55baa1f4-7f05-4b47-be17-ff2f8e6710c7" data-elfsight-app-lazy></div>
-<script src="https://www.google.com/recaptcha/api.js?render=6LexhnssAAAAAJKsI0vXffvPWyNjPh76uV2Cqfip"></script>
-<script>
-   grecaptcha.ready(function() {
-       grecaptcha.execute('6LexhnssAAAAAJKsI0vXffvPWyNjPh76uV2Cqfip', {action: 'submit'}).then(function(token) {
-           // Send token to backend for verification
-       });
-   });
-</script>
+    <section class="resource-grid">
+        <article class="content-card">
+            <i class="fas fa-chalkboard-user" aria-hidden="true"></i>
+            <h2>Presentations</h2>
+            <p>Our team is preparing presentations that make climate knowledge clear, useful, and easy to share with others.</p>
+        </article>
+        <article class="content-card">
+            <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+            <h2>Community Giving</h2>
+            <p>We are exploring ways to support trusted conservation organizations while continuing to fund local tree-planting work.</p>
+        </article>
+    </section>
 
-    
-<!-- Elfsight Background Music | Background music -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>
+    <?php include "includes/theme-picker.php"; ?>
+</main>
+
+<?php include "includes/footer.php"; ?>

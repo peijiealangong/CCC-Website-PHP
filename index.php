@@ -48,16 +48,6 @@ if($treePercent > 100){
 
 ?>
 
-    <div class="popup donate-popup" id="donatePopup" aria-hidden="true">
-        <div class="popup-content">
-            <button class="popup-close" type="button" aria-label="Close donate popup">&times;</button>
-            <h2>Support Trees with <?php echo $siteName; ?></h2>
-            <p>Your gift helps us plant trees and fund climate education today.</p>
-            <div class="gfm-embed" data-url="https://www.gofundme.com/f/plant-trees-with-the-climate-change-club/widget/small?sharesheet=undefined&attribution_id=sl:ea4c8cf4-cfa2-4f1d-8902-a7b5adf17d00"></div>
-            <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
-        </div>
-    </div>
-    <script src="https://elfsightcdn.com/platform.js" async></script>
     <div class="nav-widget elfsight-app-15f6acf7-38c9-47bb-9d32-bafd4fa48ab0" data-elfsight-app-lazy></div>
 <main>
         <section class="hero home-hero ccc-command-hero" aria-labelledby="hero-title">
@@ -107,7 +97,7 @@ if($treePercent > 100){
                                 </div>
                             </div>
                             <div class="watch-hint">
-                                <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+                                <i class="fas fa-magic" aria-hidden="true"></i>
                                 <span>New: Smart climate prompts now surface the next best action.</span>
                             </div>
                         </div>
@@ -115,8 +105,6 @@ if($treePercent > 100){
                 </aside>
             </div>
         </section>
-<!-- Inline style example removed malformed wrapper -->
-<div class="gfm-embed" data-url="https://www.gofundme.com/f/plant-trees-with-the-climate-change-club/widget/large?attribution_id=sl%3Aea4c8cf4-cfa2-4f1d-8902-a7b5adf17d00"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script>
         <section id="mission" class="intro-grid mission-grid">
             <div class="intro-card">
                 <i class="fas fa-leaf fa-3x" aria-hidden="true"></i>
@@ -149,7 +137,7 @@ if($treePercent > 100){
                 <div class="smart-stack-panel" aria-live="polite">
                     <div class="stack-toolbar" role="tablist" aria-label="Climate action filters">
                         <button class="stack-tab is-active" type="button" data-stack-target="today" role="tab" aria-selected="true" title="Show today's climate prompt"><i class="fas fa-sun" aria-hidden="true"></i><span>Today</span></button>
-                        <button class="stack-tab" type="button" data-stack-target="projects" role="tab" aria-selected="false" title="Show project prompt"><i class="fas fa-diagram-project" aria-hidden="true"></i><span>Projects</span></button>
+                        <button class="stack-tab" type="button" data-stack-target="projects" role="tab" aria-selected="false" title="Show project prompt"><i class="fas fa-project-diagram" aria-hidden="true"></i><span>Projects</span></button>
                         <button class="stack-tab" type="button" data-stack-target="watch" role="tab" aria-selected="false" title="Show video prompt"><i class="fas fa-video" aria-hidden="true"></i><span>Watch</span></button>
                         <button class="stack-tab" type="button" data-stack-target="funding" role="tab" aria-selected="false" title="Show funding prompt"><i class="fas fa-hand-holding-heart" aria-hidden="true"></i><span>Funding</span></button>
                     </div>
@@ -381,7 +369,7 @@ style="width:20%">
                 <h2>Climate Crisis Newsletter</h2>
                 <p>Subscribe to receive our latest <strong>investigative reports</strong> directly in your inbox.</p>
                 <div class="newsletter-portal">
-                    <a href="javascript:void(0)" 
+                    <a href="https://forms.gle/8BBaZFaykad2XnYF9" target="_blank" rel="noopener"
                        data-url="https://forms.gle/8BBaZFaykad2XnYF9" 
                        class="btn-primary btn-large" 
                        id="confettiTrigger">
@@ -435,10 +423,10 @@ style="width:20%">
         </section>
     </main>
 
-    <div id="gameModal" class="game-modal" aria-hidden="true">
+    <div id="gameModal" class="game-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="game-title">
         <div class="game-container">
-            <span class="close-game" id="closeGameBtn" role="button">&times;</span>
-            <h2><i class="fas fa-leaf" aria-hidden="true"></i> Carbon Catcher</h2>
+            <button class="close-game" id="closeGameBtn" type="button" aria-label="Close Carbon Catcher">&times;</button>
+            <h2 id="game-title"><i class="fas fa-leaf" aria-hidden="true"></i> Carbon Catcher</h2>
             <p>Click the falling CO2 clouds to clear the atmosphere!</p>
             <div id="game-canvas">
                 <div id="score-board">Score: <span id="game-score">0</span></div>
@@ -448,7 +436,7 @@ style="width:20%">
         </div>
     </div>
 
-    <div id="updatePopup" class="update-popup">
+    <div id="updatePopup" class="update-popup" role="status" aria-live="polite">
         <div class="popup-content">
             <button class="popup-close" type="button" aria-label="Close update notification">&times;</button>
             <p><i class="fas fa-sync-alt"></i> <strong>System Update:</strong> Version 4.0.0 Available.</p>
@@ -456,7 +444,7 @@ style="width:20%">
         </div>
     </div>
 
-    <div id="updatePopupBETA" class="update-popup">
+    <div id="updatePopupBETA" class="update-popup" role="status" aria-live="polite">
         <div class="popup-content">
             <button class="popup-close" type="button" aria-label="Close update notification">&times;</button>
             <p><i class="fas fa-flask"></i> <strong>BETA Update:</strong> Version 4.0 Testing is ready.</p>
@@ -464,8 +452,8 @@ style="width:20%">
         </div>
     </div>
 
-    <div id="videoPromoPopup" class="video-promo-popup">
-        <span class="close-video-promo" id="closeVideoPromo" role="button">&times;</span>
+    <div id="videoPromoPopup" class="video-promo-popup" role="dialog" aria-label="New video alert" aria-hidden="true">
+        <button class="close-video-promo" id="closeVideoPromo" type="button" aria-label="Close video alert">&times;</button>
         <div class="video-promo-content">
             <h3><i class="fas fa-video" aria-hidden="true"></i> New Video Alert</h3>
             <p>Check out the new <?php echo $siteName; ?> video hub.</p>
@@ -476,26 +464,6 @@ style="width:20%">
 <div class="elfsight-app-23880d49-f430-41b0-8b19-a3839f021129" data-elfsight-app-lazy></div>
 <!-- Elfsight Accessibility | Climate Change Club Website Accessibility button -->
 <div class="elfsight-app-55baa1f4-7f05-4b47-be17-ff2f8e6710c7" data-elfsight-app-lazy></div>
-    <footer class="site-footer">
-    <p><strong><?php echo $siteName; ?></strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0</p>
-</footer>
-
-    <script>
-        function showCelebration() {
-            alert("Time to celebrate. You reached the near end of the page, and less than 12% of viewers do that. Thank you for your support.");
-            if (typeof confetti === "function") {
-                confetti({
-                    particleCount: 200,
-                    spread: 100,
-                    origin: { y: 0.7 }
-                });
-            }
-        }
-    </script>
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-<!-- Elfsight Background Music | Background music -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
 <div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>	
+<?php include "includes/footer.php"; ?>
  

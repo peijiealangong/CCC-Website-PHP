@@ -15,6 +15,7 @@ const scriptLoaders = new Map();
 
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
+    initThemePickers();
     initMobileNav();
     initActiveNavigation();
     initBetaAuthNav();
@@ -161,6 +162,12 @@ function initTheme() {
     if (savedColor) {
         document.documentElement.style.setProperty("--bg-color", savedColor);
     }
+}
+
+function initThemePickers() {
+    document.querySelectorAll("[data-theme-color]").forEach((button) => {
+        button.addEventListener("click", () => changeColor(button.getAttribute("data-theme-color") || ""));
+    });
 }
 
 function changeColor(color) {
@@ -435,15 +442,21 @@ function initDonatePopup() {
     if (!popup) return;
 
     const closeButton = popup.querySelector(".popup-close");
+    let lastFocusedElement = null;
     const showPopup = () => {
+        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         popup.classList.add("show");
         popup.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
         loadGoFundMeEmbeds().catch(() => {});
+        window.setTimeout(() => closeButton?.focus(), 0);
     };
     const hidePopup = () => {
         popup.classList.remove("show");
         popup.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
         sessionStorage.setItem("hasDismissedDonatePopup", "true");
+        lastFocusedElement?.focus();
     };
 
     if (donateButton) {
@@ -460,13 +473,12 @@ function initDonatePopup() {
         }
     });
 
-    if (!sessionStorage.getItem("hasDismissedDonatePopup")) {
-        setTimeout(() => {
-            if (!popup.classList.contains("show")) {
-                showPopup();
-            }
-        }, 12000);
-    }
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && popup.getAttribute("aria-hidden") === "false") {
+            hidePopup();
+        }
+    });
+
 }
 
 async function updateMemberCount() {
@@ -657,9 +669,15 @@ function initVideoPromo() {
     if (!popup) return;
     if (window.matchMedia("(max-width: 700px)").matches) return;
 
-    setTimeout(() => popup.classList.add("show"), 10000);
+    setTimeout(() => {
+        popup.classList.add("show");
+        popup.setAttribute("aria-hidden", "false");
+    }, 10000);
     if (close) {
-        close.addEventListener("click", () => popup.classList.remove("show"));
+        close.addEventListener("click", () => {
+            popup.classList.remove("show");
+            popup.setAttribute("aria-hidden", "true");
+        });
     }
 }
 
@@ -700,6 +718,7 @@ function initMiniGame() {
     let gameActive = false;
     let spawnTimer = 0;
     let highScore = Number(localStorage.getItem("carbonHighScore") || 0);
+    let lastFocusedElement = null;
 
     highDisplay.innerText = String(highScore);
 
@@ -710,13 +729,17 @@ function initMiniGame() {
 
     const closeGame = () => {
         modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
         gameActive = false;
         startBtn.style.display = "inline-flex";
         clearClouds();
+        lastFocusedElement?.focus();
     };
 
     openBtn.addEventListener("click", () => {
+        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
         startBtn.focus();
     });
 

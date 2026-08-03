@@ -1,57 +1,38 @@
-<?php include "includes/header.php"; ?>
+<?php
+$siteName = "Climate Change Club";
+include "includes/header.php";
+?>
 
 <header class="page-hero page-hero-meetings">
     <div class="page-hero-content reveal-on-scroll">
         <span class="page-kicker">Events</span>
         <h1>Upcoming Meetings</h1>
-        <p>Stay connected with upcoming workshops, meetings, and public climate action events.</p>
+        <p>Stay connected with workshops, club meetings, and public climate-action events.</p>
     </div>
 </header>
-<p> This website is still under development </p>
-<p>
-<div class="color-panel">
-<button onclick="changeColor('blue')">Change Background: Blue</button>
-<button onclick="changeColor('white')">Change Background: White</button>
-<button onclick="changeColor('#a8dadc')">Ocean Blue</button>
-<button onclick="changeColor('#2a9d8f')">Rainforest Green</button>
-<button onclick="changeColor('#f4a261')">Sunset Orange</button>
-<button onclick="changeColor('red')">Red</button>
-<button onclick="changeColor('lightblue')">Light Blue</button>
-<button onclick="changeColor('green')">Green</button>
-<button onclick="changeColor('')">Reset Background</button>
 
-  <button onclick="changeColor('#264653')">ðŸŒŠ Ocean Depth</button>
-  <button onclick="changeColor('#2a9d8f')">ðŸŒ¿ Forest Floor</button>
-  <button style="background-color: #f4d35e; color: #222;" onclick="changeColor('#f4d35e')">â˜€ï¸ Solar Glow</button>
-  <button onclick="changeColor('#e63946')">ðŸ”¥ Wildfire</button>
-  <button onclick="changeColor('#a8dadc')">â„ï¸ Polar Ice</button>
-  <button onclick="changeColor('#e9c46a')">ðŸŒ¾ Desert Sand</button>
-  <button onclick="changeColor('#6c757d')">ðŸŒªï¸ Storm Sky</button>
-  <button onclick="changeColor('#ffcad4')">ðŸŒ¸ Spring Bloom</button>
-  <button onclick="changeColor('#5e548e')">ðŸŒŒ Midnight</button>
-  <button onclick="changeColor('#d8f3dc')">ðŸŒ¬ï¸ Wind Whisper</button>
-</div>
-  </p>
-<!-- Elfsight Accessibility | Climate Change Club Website Accessibility button -->
-<div class="elfsight-app-55baa1f4-7f05-4b47-be17-ff2f8e6710c7" data-elfsight-app-lazy></div>
-<!-- Footer -->
-<footer>
-    <p><strong><?php echo $siteName; ?></strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0</p>
-</footer>
-<script src="https://www.google.com/recaptcha/api.js?render=6LexhnssAAAAAJKsI0vXffvPWyNjPh76uV2Cqfip"></script>
-<script>
-   grecaptcha.ready(function() {
-       grecaptcha.execute('6LexhnssAAAAAJKsI0vXffvPWyNjPh76uV2Cqfip', {action: 'submit'}).then(function(token) {
-           // Send token to backend for verification
-       });
-   });
-</script>
+<main class="content-page">
+    <section class="content-card">
+        <i class="fas fa-calendar-days" aria-hidden="true"></i>
+        <h2>Meeting calendar</h2>
+        <p>Our public calendar is being finalized. Check back soon for dates, topics, and ways to participate in person or online.</p>
+        <a class="btn-primary" href="contact.php"><i class="fas fa-envelope" aria-hidden="true"></i> Ask about the next meeting</a>
+    </section>
 
- 
-    
-<!-- Elfsight Background Music | Background music -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>
+    <section class="resource-grid">
+        <article class="content-card">
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+            <h2>Bring an idea</h2>
+            <p>Have a local project, speaker, or climate question in mind? Meetings are a place to turn it into a plan.</p>
+        </article>
+        <article class="content-card">
+            <i class="fas fa-handshake" aria-hidden="true"></i>
+            <h2>Everyone is welcome</h2>
+            <p>Students, families, educators, and community members can all help shape the next action.</p>
+        </article>
+    </section>
 
+    <?php include "includes/theme-picker.php"; ?>
+</main>
+
+<?php include "includes/footer.php"; ?>

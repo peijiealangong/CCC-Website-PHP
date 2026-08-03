@@ -1,93 +1,51 @@
-<?php include "includes/config.php"; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up | <?php echo $siteName; ?></title>
-    <link rel="stylesheet" href="style.css">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#0f3d38">
-  <link rel="canonical" href="https://climatechangeclub.pages.dev/beta-signup.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Sign Up | <?php echo $siteName; ?>">
-  <meta property="og:description" content="Learn more about <?php echo $siteName; ?> student-led climate action, projects, videos, and resources.">
-  <meta property="og:url" content="https://climatechangeclub.pages.dev/beta-signup.html">
-  <meta property="og:image" content="https://climatechangeclub.pages.dev/images/stop-climate-change-background.webp">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sign Up | <?php echo $siteName; ?>">
-  <meta name="twitter:description" content="Learn more about <?php echo $siteName; ?> student-led climate action, projects, videos, and resources.">
-  <meta name="twitter:image" content="https://climatechangeclub.pages.dev/images/stop-climate-change-background.webp">
+<?php
+$siteName = "Climate Change Club";
+include "includes/header.php";
+?>
 
-</head>
-<body>
-    <main class="report-container" style="max-width: 400px; margin-top: 80px;">
-        <h2 style="text-align: center;">Create Beta Account</h2>
-        <form id="pureSignupForm" class="beta-form">
-            <div class="form-group">
-                <label for="newSubUser">Username:</label>
-                <input type="text" id="newSubUser" required placeholder="Pick a username">
-            </div>
-            <div class="form-group">
-                <label for="newSubPass">Password:</label>
-                <input type="password" id="newSubPass" required placeholder="Pick a password">
-            </div>
-            <button type="submit" id="signupBtn" class="btn-game" style="width: 100%;">Create Account 🚀</button>
-            <p id="statusMsg" style="text-align:center; margin-top:15px; display:none;"></p>
-            <div style="text-align: center; margin-top: 15px;">
-                <a href="beta-login.php" style="font-size: 0.9rem; color: var(--action-teal); text-decoration: none;">Already have an account? Login</a>
-            </div>
+<main class="content-page">
+    <section class="contact-card">
+        <i class="fas fa-flask" aria-hidden="true"></i>
+        <h1>Create Beta Account</h1>
+        <p>Beta features may change quickly. Please share any issue you find.</p>
+        <form id="pureSignupForm" class="contact-form">
+            <div class="form-group"><label for="newSubUser">Username</label><input type="text" id="newSubUser" autocomplete="username" required></div>
+            <div class="form-group"><label for="newSubPass">Password</label><input type="password" id="newSubPass" autocomplete="new-password" minlength="8" required></div>
+            <button type="submit" id="signupBtn" class="btn-primary"><i class="fas fa-user-plus" aria-hidden="true"></i> Create account</button>
+            <p id="statusMsg" class="form-status" style="display:none" aria-live="polite"></p>
         </form>
-    </main>
+        <p>Already have access? <a href="beta-login.php">Sign in</a>.</p>
+    </section>
+</main>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK_c0FmKiHqWAAr9kE231Qj0nxZgbcu-s4aUcrufzuoL5PrRaFbIEt-8VNunjgbf4/exec";
-
-    document.getElementById('pureSignupForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('signupBtn');
-        const status = document.getElementById('statusMsg');
-
-        btn.innerHTML = "Creating... ⏳";
-        btn.disabled = true;
-        status.style.display = "block";
-        status.style.color = "gray";
-        status.innerText = "Connecting to database...";
-
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            body: JSON.stringify({ 
-                action: "signup", 
-                username: document.getElementById('newSubUser').value, 
-                password: document.getElementById('newSubPass').value 
-            })
-        })
-        .then(res => res.json())
-        .then(response => {
-            if (response.result === "success") {
-                status.style.color = "green";
-                status.innerText = "Account Created! Redirecting to login...";
-                 setTimeout(() => { window.location.href = "beta-login.php"; }, 1500);
-            } else if (response.result === "exists") {
-                status.style.color = "red";
-                status.innerText = "Username already taken.";
-                btn.innerHTML = "Create Account 🚀";
-                btn.disabled = false;
-            }
-        })
-        .catch(() => {
-            status.style.color = "red";
-            status.innerText = "Error connecting to server.";
-            btn.innerHTML = "Create Account 🚀";
-            btn.disabled = false;
-        });
-    });
+const betaSignupUrl = "https://script.google.com/macros/s/AKfycbzK_c0FmKiHqWAAr9kE231Qj0nxZgbcu-s4aUcrufzuoL5PrRaFbIEt-8VNunjgbf4/exec";
+document.getElementById("pureSignupForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = document.getElementById("signupBtn");
+    const status = document.getElementById("statusMsg");
+    button.disabled = true;
+    button.textContent = "Creating…";
+    status.className = "form-status";
+    status.textContent = "Creating your beta account…";
+    status.style.display = "block";
+    try {
+        const response = await fetch(betaSignupUrl, { method: "POST", body: JSON.stringify({ action: "signup", username: document.getElementById("newSubUser").value, password: document.getElementById("newSubPass").value }) });
+        const result = await response.json();
+        if (result.result === "success") {
+            status.className = "form-status is-success";
+            status.textContent = "Account created. Redirecting to sign in…";
+            window.setTimeout(() => window.location.assign("beta-login.php"), 1200);
+            return;
+        }
+        status.className = "form-status is-error";
+        status.textContent = result.result === "exists" ? "That username is already taken." : "We could not create the account. Please try again.";
+    } catch (exception) {
+        status.className = "form-status is-error";
+        status.textContent = "We could not connect to the beta service. Please try again.";
+    }
+    button.disabled = false;
+    button.innerHTML = '<i class="fas fa-user-plus" aria-hidden="true"></i> Create account';
+});
 </script>
-<!-- Elfsight Background Music | Background music -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>
+<?php include "includes/footer.php"; ?>

@@ -139,7 +139,7 @@
                     <div class="history-item archived">
                         <div class="version-badge">v1.7</div>
                         <div class="history-content">
-                            <h3>Earth Day Happiness ðŸ¥°ðŸŒŽ</h3>
+                            <h3>Earth Day Happiness</h3>
                             <p class="release-date"><i class="far fa-calendar-alt"></i> Released: April 2026</p>
                             <ul>
                                 <li><i class="fas fa-check"></i>Earth Day Project Pictures on Home Page</li>
@@ -225,7 +225,7 @@
                     <div class="history-item beta">
                         <div class="version-badge beta-tag">BETA</div>
                         <div class="history-content">
-                            <h3>Community Chat Time ðŸ’¬</h3>
+                            <h3>Community Chat Time</h3>
                             <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v3.2-beta</p>
                             <ul>
                                 <li><i class="fas fa-vial"></i> <b>Community Forum ready for testing!</b></li>
@@ -236,7 +236,7 @@
                     <div class="history-item beta">
                         <div class="version-badge beta-tag">BETA</div>
                         <div class="history-content">
-                            <h3>Ding Dong Notifications ðŸ””</h3>
+                            <h3>Ding Dong Notifications</h3>
                             <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v3.1-beta</p>
                             <ul>
                                 <li><i class="fas fa-sync fa-spin"></i> <b>Working on new notification logic...</b></li>
@@ -249,7 +249,7 @@
                     <div class="history-item beta">
                         <div class="version-badge beta-tag">BETA</div>
                         <div class="history-content">
-                            <h3>And So it Begins... ðŸ§—â€â™‚ï¸</h3>
+                            <h3>And So It Begins</h3>
                             <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v3.0-beta</p>
                             <ul>
                                 <li><i class="fas fa-vial"></i> All new v3.0 beta testing ready!</li>
@@ -261,7 +261,7 @@
                     <div class="history-item beta">
                         <div class="version-badge beta-tag">BETA</div>
                         <div class="history-content">
-                            <h3>A Big Leap For a Coder ðŸ¸</h3>
+                            <h3>A Big Leap for a Coder</h3>
                             <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v2.0-beta</p>
                             <ul>
                                 <li><i class="fas fa-vial"></i> All new v2.0 beta testing ready!</li>

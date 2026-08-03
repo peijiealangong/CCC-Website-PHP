@@ -88,7 +88,7 @@ button {
     touch-action: manipulation;
 }
 
-button:not(.nav-toggle):not(.nav-menu-button):not(.nav-logout):not(.swatch):not(.close-game):not(.close-video-promo):not(.close-btn):not(.btn):not(.btn-primary):not(.btn-ghost):not(.btn-secondary):not(.btn-game):not(.btn-celebrate):not(.btn-large):not(.btn-download):not(.credits-button) {
+button:not(.nav-toggle):not(.nav-menu-button):not(.nav-logout):not(.swatch):not(.close-game):not(.close-video-promo):not(.close-btn):not(.popup-close):not(.btn):not(.btn-primary):not(.btn-ghost):not(.btn-secondary):not(.btn-game):not(.btn-celebrate):not(.btn-large):not(.btn-download):not(.credits-button) {
     border-radius: var(--radius);
     padding: 11px 16px;
     color: #fff;
@@ -2610,4 +2610,284 @@ footer {
     flex:1;
     padding:30px;
     background:#f4f7f6;
+}
+
+/* Accessibility, responsive polish, and shared content-page components. */
+:focus-visible {
+    outline: 3px solid rgba(32, 143, 131, 0.52);
+    outline-offset: 3px;
+}
+
+.nav-caret {
+    transition: transform var(--transition);
+}
+
+.nav-menu-button[aria-expanded="true"] .nav-caret {
+    transform: rotate(225deg) translateY(-2px);
+}
+
+.site-footer p,
+footer p {
+    margin: 0;
+    color: inherit;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.content-page {
+    display: grid;
+    gap: 28px;
+    width: min(1120px, calc(100vw - 40px));
+    margin: 0 auto;
+    padding: 48px 0;
+}
+
+.content-page > section,
+.content-page > article {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.feature-grid,
+.resource-grid,
+.download-grid,
+.instructions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.resource-grid,
+.instructions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feature-card,
+.content-card,
+.instruction-column,
+.download-card,
+.contact-card,
+.article-content {
+    min-width: 0;
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--glass-strong);
+    box-shadow: var(--shadow-soft);
+}
+
+.feature-card > i,
+.content-card > i,
+.download-card > i {
+    display: inline-grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    color: var(--primary);
+    background: var(--surface-soft);
+    font-size: 1.25rem;
+}
+
+.feature-card h2,
+.content-card h2,
+.instruction-column h2,
+.download-card h2,
+.contact-card h2,
+.article-content h2 {
+    margin: 0 0 8px;
+    color: var(--primary);
+}
+
+.feature-card a,
+.content-card a,
+.download-card a {
+    text-decoration: none;
+}
+
+.article-content {
+    line-height: 1.8;
+}
+
+.article-content img {
+    width: min(100%, 480px);
+    height: auto;
+    margin: 16px auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.theme-picker {
+    width: 100%;
+    padding: 24px;
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+    text-align: center;
+}
+
+.theme-picker h2 {
+    margin: 0 0 6px;
+    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+.theme-picker p {
+    margin-top: 0;
+}
+
+.theme-picker .swatch {
+    position: relative;
+}
+
+.theme-picker .swatch::after {
+    content: attr(aria-label);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    z-index: 1;
+    width: max-content;
+    max-width: 150px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    background: var(--primary);
+    font-size: 0.72rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 4px);
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+.theme-picker .swatch:hover::after,
+.theme-picker .swatch:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.contact-form {
+    display: grid;
+    gap: 16px;
+}
+
+.contact-form .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.form-status {
+    min-height: 1.6em;
+    margin: 0;
+    font-weight: 700;
+}
+
+.form-status.is-error {
+    color: #a83730;
+}
+
+.form-status.is-success {
+    color: var(--cta-dark);
+}
+
+.database-message {
+    width: min(720px, calc(100vw - 40px));
+    margin: 48px auto;
+    padding: 18px;
+    border-left: 4px solid var(--accent);
+    color: var(--text-primary);
+    background: #fff9df;
+}
+
+@media (max-width: 760px) {
+    .content-page {
+        width: min(100vw - 28px, 1120px);
+        gap: 20px;
+        padding: 32px 0;
+    }
+
+    .feature-grid,
+    .resource-grid,
+    .download-grid,
+    .instructions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card,
+    .content-card,
+    .instruction-column,
+    .download-card,
+    .contact-card,
+    .article-content {
+        padding: 20px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    .game-modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .game-container {
+        width: 100%;
+        max-height: min(92vh, 760px);
+        overflow-y: auto;
+        padding: 22px 16px calc(22px + env(safe-area-inset-bottom));
+        border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    #game-canvas {
+        height: min(46vh, 300px);
+    }
+
+    .donate-popup .popup-content,
+    .popup-content {
+        width: min(100% - 28px, 680px);
+        max-height: calc(100vh - 28px);
+        overflow-y: auto;
+        padding: 22px;
+    }
+
+    .video-promo-popup,
+    .update-popup {
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        width: calc(100% - 28px);
+    }
+
+    .admin-layout {
+        display: block;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .admin-sidebar h2 {
+        margin: 0 0 10px;
+    }
+
+    .admin-sidebar a {
+        display: inline-block;
+        margin: 2px;
+    }
+
+    .admin-content {
+        overflow-x: auto;
+        padding: 20px 14px;
+    }
+
+    .admin-table {
+        min-width: 640px;
+    }
 }
