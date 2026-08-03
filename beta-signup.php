@@ -1,9 +1,3 @@
-<?php include "includes/header.php"; ?>
-
-<?php
-include "includes/header.php";
-?>
-
 <?php include "includes/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +38,7 @@ include "includes/header.php";
             <button type="submit" id="signupBtn" class="btn-game" style="width: 100%;">Create Account 🚀</button>
             <p id="statusMsg" style="text-align:center; margin-top:15px; display:none;"></p>
             <div style="text-align: center; margin-top: 15px;">
-                <a href="beta-login.html" style="font-size: 0.9rem; color: var(--action-teal); text-decoration: none;">Already have an account? Login</a>
+                <a href="beta-login.php" style="font-size: 0.9rem; color: var(--action-teal); text-decoration: none;">Already have an account? Login</a>
             </div>
         </form>
     </main>
@@ -76,7 +70,7 @@ include "includes/header.php";
             if (response.result === "success") {
                 status.style.color = "green";
                 status.innerText = "Account Created! Redirecting to login...";
-                setTimeout(() => { window.location.href = "beta-login.html"; }, 1500);
+                 setTimeout(() => { window.location.href = "beta-login.php"; }, 1500);
             } else if (response.result === "exists") {
                 status.style.color = "red";
                 status.innerText = "Username already taken.";

@@ -1,9 +1,3 @@
-<?php include "includes/header.php"; ?>
-
-<?php
-include "includes/header.php";
-?>
-
 <?php include "includes/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +46,7 @@ include "includes/header.php";
             <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
                 <button type="submit" id="loginBtn" class="btn-game" style="width: 100%;">Sign In 🔐</button>
                 <div style="text-align: center; font-size: 0.8rem; color: #666;">— OR —</div>
-                <a href="beta-signup.html" class="btn-primary" style="text-align: center; text-decoration: none; background-color: var(--action-teal);">Create Account 🚀</a>
+                <a href="beta-signup.php" class="btn-primary" style="text-align: center; text-decoration: none; background-color: var(--action-teal);">Create Account 🚀</a>
             </div>
             <p id="loginError" style="display:none; color: red; text-align:center; margin-top:15px;">Incorrect username or password.</p>
         </form>
@@ -85,7 +79,7 @@ include "includes/header.php";
                     if (document.getElementById('rememberMe').checked) {
                         localStorage.setItem('betaLoggedIn', 'true');
                     }
-                    window.location.replace("beta-test.html");
+                    window.location.replace("beta-test.php");
                 } else {
                     err.style.display = "block";
                     btn.innerHTML = "Sign In 🔐";

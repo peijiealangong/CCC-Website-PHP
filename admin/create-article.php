@@ -1,13 +1,11 @@
-<?php include "../includes/header.php"; ?>
-
 <?php
 
-include "../includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 requireAdmin();
 
-include "../includes/header.php";
-include "../includes/database.php";
-include "../includes/admin-header.php";
+require_once __DIR__ . "/../includes/header.php";
+require_once __DIR__ . "/../includes/database.php";
+require_once __DIR__ . "/../includes/admin-header.php";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

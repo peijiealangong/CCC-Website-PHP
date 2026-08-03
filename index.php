@@ -1,9 +1,5 @@
 <?php include "includes/header.php"; ?>
 
-<?php
-include "includes/header.php";
-?>
-
 <!-- Version 4.0.0 | Beta Version 4.0 | Liquid Glass climate command center renovation -->
 
 
@@ -13,20 +9,23 @@ include "includes/header.php";
 include "includes/database.php";
 
 
-$donationQuery = $conn->query("
-    SELECT 
-        SUM(amount) AS totalMoney,
-        SUM(trees) AS totalTrees
-    FROM donations
-");
+$totalMoney = 0;
+$totalTrees = 0;
 
+if ($dbAvailable) {
+    $donationQuery = $conn->query("
+        SELECT
+            SUM(amount) AS totalMoney,
+            SUM(trees) AS totalTrees
+        FROM donations
+    ");
 
-$donationData = $donationQuery->fetch_assoc();
-
-
-$totalMoney = $donationData["totalMoney"] ?? 0;
-
-$totalTrees = $donationData["totalTrees"] ?? 0;
+    if ($donationQuery) {
+        $donationData = $donationQuery->fetch_assoc();
+        $totalMoney = (float) ($donationData["totalMoney"] ?? 0);
+        $totalTrees = (int) ($donationData["totalTrees"] ?? 0);
+    }
+}
 
 
 $moneyGoal = 5000;
@@ -48,7 +47,6 @@ if($treePercent > 100){
 
 
 ?>
-<body>
 
     <div class="popup donate-popup" id="donatePopup" aria-hidden="true">
         <div class="popup-content">
@@ -61,7 +59,6 @@ if($treePercent > 100){
     </div>
     <script src="https://elfsightcdn.com/platform.js" async></script>
     <div class="nav-widget elfsight-app-15f6acf7-38c9-47bb-9d32-bafd4fa48ab0" data-elfsight-app-lazy></div>
-</header>
 <main>
         <section class="hero home-hero ccc-command-hero" aria-labelledby="hero-title">
             <div class="home-hero-layout">
@@ -75,7 +72,7 @@ if($treePercent > 100){
                     <p>A redesigned student action hub with fast project paths, smart climate prompts, live progress, videos, games, and practical ways to help.</p>
                     <div class="hero-btns">
                         <a class="btn" href="#mission"><i class="fas fa-bolt" aria-hidden="true"></i> Start Action</a>
-                        <a class="btn-ghost" href="watch.html"><i class="fas fa-play" aria-hidden="true"></i> Watch Videos</a>
+                        <a class="btn-ghost" href="watch.php"><i class="fas fa-play" aria-hidden="true"></i> Watch Videos</a>
                         <a class="btn-ghost" href="#climate-defender"><i class="fas fa-gamepad" aria-hidden="true"></i> Climate Defender</a>
                         <button class="btn-game" id="openGameBtn" aria-label="Open Carbon Catcher Game"><i class="fas fa-cloud-sun" aria-hidden="true"></i> Carbon Catcher</button>
                     </div>
@@ -125,20 +122,20 @@ if($treePercent > 100){
                 <i class="fas fa-leaf fa-3x" aria-hidden="true"></i>
                 <h2>Our Mission</h2>
                 <p>Driving education and direct action to halt the global climate crisis.</p>
-                <a href="about.html" class="btn-primary"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn More</a>
+                <a href="about.php" class="btn-primary"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn More</a>
             </div>
             
             <div class="intro-card">
                 <i class="fas fa-tools fa-3x" aria-hidden="true"></i>
                 <h2>Active Projects</h2>
                 <p>From local campus composting to city-wide advocacy and policy.</p>
-                <a href="projects.html" class="btn-primary"><i class="fas fa-seedling" aria-hidden="true"></i> View Projects</a>
+                <a href="projects.php" class="btn-primary"><i class="fas fa-seedling" aria-hidden="true"></i> View Projects</a>
             </div>
             <div class="intro-card">
                 <i class="fas fa-calendar-alt fa-3x" aria-hidden="true"></i>
                 <h2>Global Events</h2>
                 <p>Join our next march or community workshop this coming weekend.</p>
-                <a href="meetings.html" class="btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i> See Calendar</a>
+                <a href="meetings.php" class="btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i> See Calendar</a>
             </div>
         </section>
 
@@ -166,13 +163,13 @@ if($treePercent > 100){
                         <span class="stack-eyebrow">Project focus</span>
                         <h3>Tree planting is still the main field goal.</h3>
                         <p>Every $10 raised helps move the club toward another tree and more local action.</p>
-                        <a class="btn-secondary" href="projects.html"><i class="fas fa-tree" aria-hidden="true"></i> Open Projects</a>
+                        <a class="btn-secondary" href="projects.php"><i class="fas fa-tree" aria-hidden="true"></i> Open Projects</a>
                     </article>
                     <article class="stack-card" data-stack-card="watch">
                         <span class="stack-eyebrow">Watch next</span>
                         <h3>The video hub keeps lessons easy to find.</h3>
                         <p>Use the Watch page for explainers, project updates, and climate learning materials.</p>
-                        <a class="btn-secondary" href="watch.html"><i class="fas fa-play" aria-hidden="true"></i> Open Watch</a>
+                        <a class="btn-secondary" href="watch.php"><i class="fas fa-play" aria-hidden="true"></i> Open Watch</a>
                     </article>
                     <article class="stack-card" data-stack-card="funding">
                         <span class="stack-eyebrow">Support</span>
@@ -240,7 +237,7 @@ if($treePercent > 100){
 <div class="elfsight-app-33092e72-36b2-41e9-a78d-b68cc319903c" data-elfsight-app-lazy></div>
 
         <div class="jump-anchor">
-            <a href="watch.html" class="btn-secondary">Watch Climate Videos</a>
+            <a href="watch.php" class="btn-secondary">Watch Climate Videos</a>
         </div>
 <!-- Elfsight Before and After Slider | Climate Change Before and After Slider -->
 <div class="elfsight-app-ea01090c-eff4-45d4-a0e9-6faea39bbff7" data-elfsight-app-lazy></div>
@@ -472,7 +469,7 @@ style="width:20%">
         <div class="video-promo-content">
             <h3><i class="fas fa-video" aria-hidden="true"></i> New Video Alert</h3>
             <p>Check out the new <?php echo $siteName; ?> video hub.</p>
-            <a href="watch.html" class="btn-primary">Watch Now</a>
+            <a href="watch.php" class="btn-primary">Watch Now</a>
         </div>
     </div>
 <!-- Elfsight Cookie Consent | Climate Change Club Cookie Consent -->

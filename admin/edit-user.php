@@ -1,12 +1,10 @@
-<?php include "../includes/header.php"; ?>
-
 <?php
 
-include "../includes/auth.php";
+require_once __DIR__ . "/../includes/auth.php";
 requireAdmin();
 
-include "../includes/header.php";
-include "../includes/database.php";
+require_once __DIR__ . "/../includes/header.php";
+require_once __DIR__ . "/../includes/database.php";
 
 
 $id = $_GET["id"];

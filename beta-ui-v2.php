@@ -1,9 +1,3 @@
-<?php include "includes/header.php"; ?>
-
-<?php
-include "includes/header.php";
-?>
-
 <?php include "includes/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -1032,7 +1026,7 @@ body.reduced-motion * {
 
     <!-- Back -->
     <div class="back-row reveal">
-        <a href="beta-test.html" class="back-btn">
+        <a href="beta-test.php" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Beta Test Lab
         </a>
     </div>

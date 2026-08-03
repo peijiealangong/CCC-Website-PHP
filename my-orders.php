@@ -6,13 +6,11 @@ include "includes/auth.php";
 requireLogin();
 
 include "includes/database.php";
-include "includes/header.php";
-
-
 $user_id = $_SESSION["user_id"];
+$orders = false;
 
-
-$stmt = $conn->prepare(
+if ($dbAvailable) {
+    $stmt = $conn->prepare(
 "
 SELECT 
 product,
@@ -26,19 +24,17 @@ WHERE user_id=?
 
 ORDER BY id DESC
 "
-);
+    );
 
 
-$stmt->bind_param(
-"i",
-$user_id
-);
+    $stmt->bind_param("i", $user_id);
 
 
-$stmt->execute();
+    $stmt->execute();
 
 
-$orders = $stmt->get_result();
+    $orders = $stmt->get_result();
+}
 
 
 ?>
@@ -46,6 +42,10 @@ $orders = $stmt->get_result();
 
 <h1>📦 My Orders</h1>
 
+
+<?php if (!$dbAvailable): ?>
+<p class="database-message"><?php echo htmlspecialchars($dbError); ?></p>
+<?php else: ?>
 
 <?php if($orders->num_rows == 0): ?>
 
@@ -97,3 +97,4 @@ Date:
 
 
 <?php endwhile; ?>
+<?php endif; ?>

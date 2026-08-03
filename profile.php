@@ -6,27 +6,15 @@ include "includes/auth.php";
 requireLogin();
 
 include "includes/database.php";
-include "includes/header.php";
-
-
 $user_id = $_SESSION["user_id"];
+$user = null;
 
-
-$stmt = $conn->prepare(
-    "SELECT username, email FROM users WHERE id=?"
-);
-
-
-$stmt->bind_param(
-    "i",
-    $user_id
-);
-
-
-$stmt->execute();
-
-
-$user = $stmt->get_result()->fetch_assoc();
+if ($dbAvailable) {
+    $stmt = $conn->prepare("SELECT username, email FROM users WHERE id=?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $user = $stmt->get_result()->fetch_assoc();
+}
 
 
 ?>
@@ -34,6 +22,12 @@ $user = $stmt->get_result()->fetch_assoc();
 
 <h1>👤 My Profile</h1>
 
+
+<?php if (!$dbAvailable): ?>
+<p class="database-message"><?php echo htmlspecialchars($dbError); ?></p>
+<?php elseif (!$user): ?>
+<p class="database-message">Your profile could not be found.</p>
+<?php else: ?>
 
 <div class="profile-card">
 
@@ -57,3 +51,4 @@ $user = $stmt->get_result()->fetch_assoc();
 
 
 </div>
+<?php endif; ?>

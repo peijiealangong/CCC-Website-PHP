@@ -2,7 +2,6 @@
 
 <?php
 
-include "includes/header.php";
 include "includes/database.php";
 
 
@@ -21,25 +20,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES (?, ?, ?)";
 
 
-    $stmt = $conn->prepare($sql);
+    if (!$dbAvailable) {
+        echo "<p class=\"database-message\">" . htmlspecialchars($dbError) . "</p>";
+    } else {
+        $stmt = $conn->prepare($sql);
 
 
-    $stmt->bind_param(
-        "sss",
-        $username,
-        $email,
-        $hashedPassword
-    );
+        $stmt->bind_param("sss", $username, $email, $hashedPassword);
 
 
-    if ($stmt->execute()) {
+        if ($stmt->execute()) {
 
         echo "<p>✅ Account created successfully!</p>";
 
-    } else {
+        } else {
 
         echo "<p>❌ Error: " . $conn->error . "</p>";
 
+        }
     }
 
 

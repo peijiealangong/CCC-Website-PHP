@@ -30,7 +30,7 @@
     <i class="fas fa-flask fa-2x" style="color: var(--action-teal);"></i>
     <h3>New UI Testing v3.0</h3>
     <p>Preview an experimental, animationâ€‘heavy redesign of the <?php echo $siteName; ?> pages.</p>
-    <button class="btn-primary" onclick="window.location.href='beta-ui-v2.html'">
+    <button class="btn-primary" onclick="window.location.href='beta-ui-v2.php'">
         Open UI Preview 3.0
     </button>
 </div>

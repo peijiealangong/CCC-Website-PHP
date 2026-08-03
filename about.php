@@ -14,7 +14,7 @@
         <p>We aim to combat climate change through awareness, community action, and sustainable innovation.</p>
       </div>
 
-      <a class="intro-card" href="stages.html">
+      <a class="intro-card" href="stages.php">
         <h2>Development Stage ðŸ—ï¸</h2>
         <p>Currently in the early stages of our mission. Click here to see our roadmap and progress.</p>
       </a>

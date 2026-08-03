@@ -1,8 +1,4 @@
 <?php
-include "includes/header.php";
-?>
-
-<?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

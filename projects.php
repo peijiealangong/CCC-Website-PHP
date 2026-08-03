@@ -1,9 +1,3 @@
-<?php include "includes/header.php"; ?>
-
-<?php
-include "includes/header.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +36,7 @@ include "includes/header.php";
 <body>
 <header class="site-header">
     <nav class="site-nav" aria-label="Main Navigation">
-        <a class="nav-logo" href="index.html" data-nav-section="home">
+        <a class="nav-logo" href="index.php" data-nav-section="home">
             <span class="brand-mark" aria-hidden="true">CCC</span>
             <span>Climate Change Club</span>
         </a>
@@ -52,33 +46,33 @@ include "includes/header.php";
             <span class="bar"></span>
         </button>
         <ul id="primary-navigation" class="nav-list" data-visible="false">
-            <li><a href="index.html" data-nav-section="home">Home</a></li>
+            <li><a href="index.php" data-nav-section="home">Home</a></li>
             <li class="dropdown">
                 <button class="nav-menu-button" type="button" aria-expanded="false" data-nav-section="club">Club<span class="nav-caret" aria-hidden="true"></span></button>
                 <ul class="submenu" aria-label="Club pages">
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="meetings.html">Meetings</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="projects.php">Projects</a></li>
+                    <li><a href="meetings.php">Meetings</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <button class="nav-menu-button" type="button" aria-expanded="false" data-nav-section="resources">Resources<span class="nav-caret" aria-hidden="true"></span></button>
                 <ul class="submenu" aria-label="Resources pages">
-                    <li><a href="notices.html">Notices</a></li>
-                    <li><a href="articles.html">Articles</a></li>
-                    <li><a href="climatechronicle.html">The Climate Chronicle</a></li>
-                    <li><a href="download.html">Download App</a></li>
+                    <li><a href="notices.php">Notices</a></li>
+                    <li><a href="articles.php">Articles</a></li>
+                    <li><a href="climatechronicle.php">The Climate Chronicle</a></li>
+                    <li><a href="download.php">Download App</a></li>
                 </ul>
             </li>
-            <li><a href="watch.html" data-nav-section="watch">Watch</a></li>
+            <li><a href="watch.php" data-nav-section="watch">Watch</a></li>
             <li><button class="nav-donate-button" id="donateButton" type="button">Donate</button></li>
-            <li><a href="contact.html" data-nav-section="contact">Contact</a></li>
+            <li><a href="contact.php" data-nav-section="contact">Contact</a></li>
             <li class="dropdown">
                 <button class="nav-menu-button" type="button" id="betaNavBtn" aria-expanded="false" data-nav-section="beta">Beta Features<span class="notification-dot" id="updateDot" aria-hidden="true"></span><span class="nav-caret" aria-hidden="true"></span></button>
                 <ul class="submenu" aria-label="Beta pages">
-                    <li><a href="beta-test.html">Test Lab</a></li>
-                    <li><a href="beta-docs.html">Documentation (No Login Required)</a></li>
-                    <li><a href="beta-report.html">Report a Problem</a></li>
+                    <li><a href="beta-test.php">Test Lab</a></li>
+                    <li><a href="beta-docs.php">Documentation (No Login Required)</a></li>
+                    <li><a href="beta-report.php">Report a Problem</a></li>
                     <li class="beta-logout-item"><button class="nav-logout" type="button" data-beta-logout>Logout</button></li>
                 </ul>
             </li>

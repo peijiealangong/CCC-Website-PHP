@@ -176,7 +176,7 @@ function changeColor(color) {
 function betaSignOut() {
     localStorage.removeItem("betaLoggedIn");
     sessionStorage.removeItem("betaLoggedIn");
-    window.location.replace("index.html");
+    window.location.replace("index.php");
 }
 
 function initMobileNav() {
@@ -252,35 +252,35 @@ function initMobileNav() {
 }
 
 function initActiveNavigation() {
-    const path = window.location.pathname.split("/").pop() || "index.html";
+    const path = window.location.pathname.split("/").pop() || "index.php";
     const sectionByPage = {
-        "index.html": "home",
-        "about.html": "club",
-        "projects.html": "club",
-        "meetings.html": "club",
-        "stages.html": "club",
-        "notices.html": "resources",
-        "articles.html": "resources",
-        "climatechronicle.html": "resources",
-        "download.html": "resources",
-        "watch.html": "watch",
+        "index.php": "home",
+        "about.php": "club",
+        "projects.php": "club",
+        "meetings.php": "club",
+        "stages.php": "club",
+        "notices.php": "resources",
+        "articles.php": "resources",
+        "climatechronicle.php": "resources",
+        "download.php": "resources",
+        "watch.php": "watch",
         "treeshapes.html": "resources",
         "egg.html": "resources",
         "screaming.html": "resources",
         "suma.html": "resources",
-        "contact.html": "contact",
-        "beta-test.html": "beta",
-        "beta-docs.html": "beta",
-        "beta-report.html": "beta"
+        "contact.php": "contact",
+        "beta-test.php": "beta",
+        "beta-docs.php": "beta",
+        "beta-report.php": "beta"
     };
 
     const currentSection = sectionByPage[path];
-    const currentPath = new URL(window.location.href).pathname.replace(/\/$/, "/index.html");
+    const currentPath = new URL(window.location.href).pathname.replace(/\/$/, "/index.php");
 
     document.querySelectorAll(".nav-list a[href]").forEach((link) => {
         const href = link.getAttribute("href");
         if (!href || href === "#") return;
-        const linkPath = new URL(href, window.location.href).pathname.replace(/\/$/, "/index.html");
+        const linkPath = new URL(href, window.location.href).pathname.replace(/\/$/, "/index.php");
         if (linkPath === currentPath) {
             link.classList.add("active");
         }
@@ -368,7 +368,7 @@ function setupUpdateNotification() {
     }
 
     updateBtn.addEventListener("click", () => {
-        handleUpdateSequence(updateBtn, currentVersion, "index.html");
+        handleUpdateSequence(updateBtn, currentVersion, "index.php");
     });
 }
 
@@ -395,7 +395,7 @@ function setupUpdateNotificationBETA() {
     }
 
     updateBtn.addEventListener("click", () => {
-        handleUpdateSequence(updateBtn, currentVersion, "beta-login.html");
+        handleUpdateSequence(updateBtn, currentVersion, "beta-login.php");
     });
 }
 

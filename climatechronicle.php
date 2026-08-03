@@ -12,7 +12,7 @@
 include "includes/database.php";
 
 
-$result = $conn->query(
+$result = $dbAvailable ? $conn->query(
 "
 SELECT
 
@@ -27,7 +27,7 @@ WHERE published = 1
 ORDER BY created_at DESC
 
 "
-);
+    ) : false;
 
 
 if ($result && $result->num_rows > 0):

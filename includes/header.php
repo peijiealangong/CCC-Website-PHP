@@ -1,5 +1,12 @@
 <?php
 
+// Several legacy pages include this file more than once. Keep the shared
+// markup and session initialization single-run.
+if (defined("CCC_HEADER_INCLUDED")) {
+    return;
+}
+define("CCC_HEADER_INCLUDED", true);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

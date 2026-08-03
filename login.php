@@ -2,9 +2,6 @@
 
 <?php
 
-session_start();
-
-include "includes/header.php";
 include "includes/database.php";
 
 
@@ -17,21 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM users WHERE email = ?";
 
 
-    $stmt = $conn->prepare($sql);
+    if (!$dbAvailable) {
+        echo "<p class=\"database-message\">" . htmlspecialchars($dbError) . "</p>";
+    } else {
+        $stmt = $conn->prepare($sql);
 
-    $stmt->bind_param(
-        "s",
-        $email
-    );
-
-
-    $stmt->execute();
+        $stmt->bind_param("s", $email);
 
 
-    $result = $stmt->get_result();
+        $stmt->execute();
 
 
-    if ($result->num_rows == 1) {
+        $result = $stmt->get_result();
+
+
+        if ($result->num_rows == 1) {
 
         $user = $result->fetch_assoc();
 
@@ -54,10 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 
-    } else {
+        } else {
 
         echo "<p>❌ Account not found</p>";
 
+        }
     }
 
 }

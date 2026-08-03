@@ -3,10 +3,10 @@
 <?php
 
 include "includes/database.php";
-include "includes/header.php";
+$result = false;
 
-
-$result = $conn->query(
+if ($dbAvailable) {
+    $result = $conn->query(
 "
 SELECT
 
@@ -26,7 +26,8 @@ WHERE articles.published = 1
 ORDER BY articles.id DESC
 
 "
-);
+    );
+}
 
 
 ?>
@@ -41,7 +42,7 @@ Latest updates from Climate Change Club
 
 
 
-<?php while($article = $result->fetch_assoc()): ?>
+<?php while($result && $article = $result->fetch_assoc()): ?>
 
 
 <article class="article-card">

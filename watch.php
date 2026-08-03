@@ -9,7 +9,7 @@
         <div class="hero-btns">
             <a class="btn" href="#featured-video">Featured Video</a>
             <a class="btn-ghost" href="#video-library">Browse Library</a>
-            <a class="btn-ghost" href="articles.html">Read Articles</a>
+            <a class="btn-ghost" href="articles.php">Read Articles</a>
         </div>
     </div>
 </header>
@@ -34,8 +34,8 @@
         </div>
 
         <div class="watch-actions">
-            <a class="btn-primary" href="projects.html">Explore Projects</a>
-            <a class="btn-secondary" href="meetings.html">Join a Meeting</a>
+            <a class="btn-primary" href="projects.php">Explore Projects</a>
+            <a class="btn-secondary" href="meetings.php">Join a Meeting</a>
         </div>
     </section>
 
@@ -86,15 +86,15 @@
             <p>Keep going with the stories, projects, and club pages connected to each video.</p>
         </div>
         <div class="watch-link-grid">
-            <a href="articles.html" class="watch-link-card">
+            <a href="articles.php" class="watch-link-card">
                 <i class="fas fa-newspaper" aria-hidden="true"></i>
                 <span>Read climate articles</span>
             </a>
-            <a href="projects.html" class="watch-link-card">
+            <a href="projects.php" class="watch-link-card">
                 <i class="fas fa-seedling" aria-hidden="true"></i>
                 <span>Explore active projects</span>
             </a>
-            <a href="contact.html" class="watch-link-card">
+            <a href="contact.php" class="watch-link-card">
                 <i class="fas fa-envelope" aria-hidden="true"></i>
                 <span>Contact the club</span>
             </a>
