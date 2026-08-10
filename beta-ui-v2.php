@@ -35,15 +35,15 @@
 
 /* Base tokens */
 :root {
-    --bg: #f5f5f7;
-    --surface: #ffffff;
-    --surface-variant: #f0f2f7;
-    --text: #111827;
-    --text-muted: #6b7280;
-    --primary: #2563eb;
-    --primary-container: #dbeafe;
+    --bg: #f4f8f1;
+    --surface: #fffef9;
+    --surface-variant: #e7f0e4;
+    --text: #183a30;
+    --text-muted: #587268;
+    --primary: #176d5e;
+    --primary-container: #dcefe1;
     --primary-on: #ffffff;
-    --secondary: #10b981;
+    --secondary: #5d9d68;
     --danger: #ef4444;
     --warning: #f59e0b;
     --info: #0ea5e9;
@@ -77,7 +77,7 @@ body.dark-mode {
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at top, #e0f2fe 0, #f5f5f7 40%, #e5e7eb 100%);
+    background: radial-gradient(circle at top, #e4f2df 0, #f8fbf4 40%, #edf4ec 100%);
     color: var(--text);
     font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     transition: background 0.4s ease, color 0.4s ease;
@@ -1034,7 +1034,8 @@ body.reduced-motion * {
     </div>
 
     <div class="footer reveal">
-        <?php echo $siteName; ?> · UI Testing v3.0 · Material You Experimental Build
+        <?php echo $siteName; ?> · UI Testing v3.0 · Material You Experimental Build<br>
+        This summer, we are going to set up a lemonade stand to raise money for tree planting and student climate action.
     </div>
 
 </div>
@@ -1431,9 +1432,9 @@ function showDemo(id) {
 function setTheme(name) {
     const root = document.documentElement;
     if (name === "default") {
-        root.style.setProperty("--primary", "#2563eb");
-        root.style.setProperty("--secondary", "#10b981");
-        root.style.setProperty("--primary-container", "#dbeafe");
+        root.style.setProperty("--primary", "#176d5e");
+        root.style.setProperty("--secondary", "#5d9d68");
+        root.style.setProperty("--primary-container", "#dcefe1");
     } else if (name === "blue") {
         root.style.setProperty("--primary", "#1d4ed8");
         root.style.setProperty("--secondary", "#0ea5e9");

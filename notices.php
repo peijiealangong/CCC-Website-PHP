@@ -22,6 +22,10 @@ include "includes/header.php";
             <span class="badge b-milestone">Milestone</span>
             <p><strong>Tree planting goal:</strong> every contribution helps fund another tree and climate education for students.</p>
         </article>
+        <article class="alert-card fundraiser-alert">
+            <span class="badge b-milestone">Summer fundraiser</span>
+            <p><strong>Lemonade stand:</strong> we are going to set up a lemonade stand this summer to raise money for tree planting and student climate action.</p>
+        </article>
     </section>
 
     <section aria-labelledby="activity-title">

@@ -105,10 +105,6 @@
 <!-- Elfsight Accessibility | Climate Change Club Website Accessibility button -->
 <div class="elfsight-app-55baa1f4-7f05-4b47-be17-ff2f8e6710c7" data-elfsight-app-lazy></div>
 
-<footer class="site-footer">
-    <p><strong><?php echo $siteName; ?></strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0</p>
-</footer>
 <div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>
+<?php include "includes/footer.php"; ?>
 

@@ -28,6 +28,11 @@ include "includes/header.php";
             <h2>Sustainability Meetings</h2>
             <p>Meetings give members a place to plan projects, share research, and turn good ideas into a larger impact.</p>
         </article>
+        <article class="feature-card feature-card-lemonade">
+            <i class="fas fa-lemon" aria-hidden="true"></i>
+            <h2>Summer Lemonade Stand</h2>
+            <p>We are going to set up a lemonade stand this summer to raise money for tree planting and student-led climate action.</p>
+        </article>
     </section>
 
     <section class="resource-grid">

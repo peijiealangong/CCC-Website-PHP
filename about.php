@@ -33,7 +33,7 @@ include "includes/header.php";
     <section class="content-card">
         <i class="fas fa-tree" aria-hidden="true"></i>
         <h2>What we're doing now</h2>
-        <p>As the weather gets warmer, we are planning to plant one tree for every $10 we raise. Follow the club for project updates, local opportunities, and ways to help.</p>
+        <p>As the weather gets warmer, we are planning to plant one tree for every $10 we raise. This summer, we are setting up a lemonade stand to help raise that money. Follow the club for project updates, local opportunities, and ways to help.</p>
         <a class="btn-primary" href="projects.php"><i class="fas fa-seedling" aria-hidden="true"></i> Explore projects</a>
     </section>
 

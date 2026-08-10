@@ -161,8 +161,8 @@ if($treePercent > 100){
                     </article>
                     <article class="stack-card" data-stack-card="funding">
                         <span class="stack-eyebrow">Support</span>
-                        <h3>Funding progress is now part of the dashboard.</h3>
-                        <p>Use the donation popup to support tree planting and student climate education.</p>
+                        <h3>Fresh lemonade can help grow our next tree.</h3>
+                        <p>This summer, we are going to set up a lemonade stand to raise money for tree planting and student climate education.</p>
                         <button class="btn-secondary" type="button" data-open-donate><i class="fas fa-heart" aria-hidden="true"></i> Donate</button>
                     </article>
                 </div>

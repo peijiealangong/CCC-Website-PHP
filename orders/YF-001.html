@@ -335,6 +335,81 @@
       min-width: 0;
     }
   }
+
+  /* Order tracking content refresh — navigation above remains unchanged. */
+  body {
+    color: #17372e;
+    background:
+      radial-gradient(circle at top left, rgba(229, 174, 50, 0.14), transparent 30%),
+      radial-gradient(circle at top right, rgba(93, 157, 104, 0.14), transparent 25%),
+      linear-gradient(180deg, #fafcf7 0%, #edf4ec 100%);
+  }
+
+  .container {
+    max-width: 940px;
+    margin: clamp(28px, 5vw, 56px) auto;
+  }
+
+  .container > h1,
+  #name {
+    color: #17483b;
+  }
+
+  .container > p {
+    color: #537166;
+  }
+
+  hr {
+    background: linear-gradient(90deg, transparent, rgba(21, 119, 104, 0.35), transparent);
+  }
+
+  .card {
+    border-color: rgba(23, 72, 59, 0.16);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(255, 255, 252, 0.97), rgba(244, 248, 241, 0.93));
+    box-shadow: 0 16px 38px rgba(18, 61, 45, 0.11);
+  }
+
+  .status {
+    color: #176247;
+    border-color: rgba(47, 114, 85, 0.18);
+    background: linear-gradient(135deg, #e4f3e3, #d5ead8);
+  }
+
+  .progress::before,
+  .dot {
+    background: #d9e5d8;
+  }
+
+  .dot {
+    border-color: #fbfdf8;
+    box-shadow: 0 0 0 1px rgba(47, 114, 85, 0.2);
+  }
+
+  .step {
+    color: #71877b;
+  }
+
+  .step.active {
+    color: #176d5e;
+  }
+
+  .step.active .dot {
+    background: #176d5e;
+    box-shadow: 0 0 0 6px rgba(23, 109, 94, 0.13);
+  }
+
+  .label {
+    color: #426356;
+  }
+
+  #item,
+  #location,
+  #updatedAt {
+    border-color: rgba(23, 72, 59, 0.13);
+    color: #17372e;
+    background: #fbfdf8;
+  }
 </style>
 </head>
 
@@ -424,6 +499,13 @@
   </div>
 
 </div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p><strong>Climate Change Club</strong> &middot; Student-led climate action &middot; &copy; 2026</p>
+    <p class="summer-fundraiser"><i class="fas fa-lemon" aria-hidden="true"></i> This summer, we are going to set up a lemonade stand to raise money for tree planting and student climate action.</p>
+  </div>
+</footer>
 
 <!-- FIREBASE SCRIPT -->
 <script type="module">

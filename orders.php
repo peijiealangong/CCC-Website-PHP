@@ -14,10 +14,6 @@
     <p>Paste your full order link into the browser to open your private tracking page.</p>
   </section>
 </main>
-<footer class="site-footer">
-    <p><strong><?php echo $siteName; ?></strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0</p>
-</footer>
 <div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>
+<?php include "includes/footer.php"; ?>
 
