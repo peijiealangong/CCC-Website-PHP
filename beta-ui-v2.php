@@ -24,7 +24,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="style.css?v=4.0.1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" referrerpolicy="no-referrer">
+<script src="javascript.js?v=4.0.1" defer></script>
 
 <style>
 /* ============================================================
@@ -1472,7 +1474,6 @@ function clearStress() {
 }
 </script>
 <!-- Elfsight Background Music | Background music -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
 <div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
 </body>
 </html>

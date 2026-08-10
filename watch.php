@@ -108,8 +108,6 @@
 <footer class="site-footer">
     <p><strong><?php echo $siteName; ?></strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0</p>
 </footer>
-<!-- Elfsight Background Music | Background music -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
 <div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
 </body>
 </html>

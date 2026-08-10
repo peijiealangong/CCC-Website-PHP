@@ -36,6 +36,8 @@ if ($requestPath === "/") {
     $requestPath = "/index.php";
 }
 $canonicalUrl = "https://climatechangeclub.pages.dev" . $requestPath;
+$styleVersion = (string) (@filemtime(__DIR__ . "/../style.css") ?: "1");
+$scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 
 ?>
 
@@ -82,7 +84,7 @@ $canonicalUrl = "https://climatechangeclub.pages.dev" . $requestPath;
 
 
 
-<link rel="stylesheet" href="<?php echo $basePath; ?>style.css">
+<link rel="stylesheet" href="<?php echo $basePath; ?>style.css?v=<?php echo $styleVersion; ?>">
 
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -91,7 +93,7 @@ $canonicalUrl = "https://climatechangeclub.pages.dev" . $requestPath;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" referrerpolicy="no-referrer">
 
 
-<script src="<?php echo $basePath; ?>javascript.js" defer></script>
+<script src="<?php echo $basePath; ?>javascript.js?v=<?php echo $scriptVersion; ?>" defer></script>
 
 
 
