@@ -54,12 +54,11 @@ if ($user["role"] == "admin") {
 
 <br>
 
-<a 
-href="delete-user.php?id=<?php echo $user["id"]; ?>"
-onclick="return confirm('Delete this user?');"
->
-🗑️ Delete
-</a>
+<form class="inline-form" method="post" action="delete-user.php" onsubmit="return confirm('Delete this user?');">
+    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(createCSRFToken(), ENT_QUOTES, "UTF-8"); ?>">
+    <input type="hidden" name="id" value="<?php echo (int) $user["id"]; ?>">
+    <button class="text-button danger-button" type="submit">🗑️ Delete</button>
+</form>
 
 </td>
 
@@ -71,3 +70,4 @@ onclick="return confirm('Delete this user?');"
 </main>
 
 </div>
+<?php require_once __DIR__ . "/../includes/admin-footer.php"; ?>

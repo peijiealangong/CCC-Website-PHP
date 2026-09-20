@@ -9,11 +9,15 @@ require_once __DIR__ . "/../includes/admin-header.php";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    requireValidCSRFToken();
 
-
-    $title = $_POST["title"];
-    $content = $_POST["content"];
+    $title = trim($_POST["title"] ?? "");
+    $content = trim($_POST["content"] ?? "");
     $author_id = $_SESSION["user_id"];
+
+    if ($title === "" || $content === "" || strlen($title) > 180) {
+        exit("Please provide a title up to 180 characters and article content.");
+    }
 
 
     $stmt = $conn->prepare(
@@ -46,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <form method="POST">
+<input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(createCSRFToken(), ENT_QUOTES, "UTF-8"); ?>">
 
 
 <label>
@@ -57,6 +62,7 @@ Title:
 <input 
 type="text"
 name="title"
+maxlength="180"
 required
 >
 
@@ -93,3 +99,4 @@ Publish Article
 </main>
 
 </div>
+<?php require_once __DIR__ . "/../includes/admin-footer.php"; ?>

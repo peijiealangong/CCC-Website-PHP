@@ -86,12 +86,11 @@ $result = $conn->query($query);
 
 <br>
 
-<a 
-href="delete-article.php?id=<?php echo $article["id"]; ?>"
-onclick="return confirm('Delete this article?');"
->
-🗑️ Delete
-</a>
+<form class="inline-form" method="post" action="delete-article.php" onsubmit="return confirm('Delete this article?');">
+    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(createCSRFToken(), ENT_QUOTES, "UTF-8"); ?>">
+    <input type="hidden" name="id" value="<?php echo (int) $article["id"]; ?>">
+    <button class="text-button danger-button" type="submit">🗑️ Delete</button>
+</form>
 </td>
 
 
@@ -107,3 +106,4 @@ onclick="return confirm('Delete this article?');"
 </main>
 
 </div>
+<?php require_once __DIR__ . "/../includes/admin-footer.php"; ?>

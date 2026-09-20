@@ -1,50 +1,55 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
+
+declare(strict_types=1);
+
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
-// Require PHPMailer files from PHPMailer-master directory
-require 'PHPMailer-master/src/Exception.php';
-require 'PHPMailer-master/src/PHPMailer.php';
-require 'PHPMailer-master/src/SMTP.php';
-require 'config.php';
+require_once __DIR__ . "/includes/auth.php";
+require_once __DIR__ . "/config.php";
+requireValidCSRFToken();
 
-$mail = new PHPMailer(true);
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
+    exit("Method not allowed.");
+}
+
+if (SMTP_USERNAME === "" || SMTP_PASSWORD === "") {
+    http_response_code(503);
+    exit("The email service is not configured.");
+}
+
+$recipientEmail = filter_var(trim($_POST["email"] ?? ""), FILTER_VALIDATE_EMAIL);
+$recipientName = trim($_POST["name"] ?? "Supporter");
+
+if (!$recipientEmail || $recipientName === "") {
+    http_response_code(422);
+    exit("Please provide a valid name and email address.");
+}
+
+require_once __DIR__ . "/PHPMailer-master/src/Exception.php";
+require_once __DIR__ . "/PHPMailer-master/src/PHPMailer.php";
+require_once __DIR__ . "/PHPMailer-master/src/SMTP.php";
 
 try {
-    // Debugging (Set to 2 for troubleshooting, 0 for production)
-    $mail->SMTPDebug = 2; 
-    $mail->Debugoutput = 'html';
-
-    // SMTP Configuration
+    $mail = new PHPMailer(true);
+    $mail->SMTPDebug = 0;
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com'; // Gmail SMTP
+    $mail->Host = SMTP_HOST;
     $mail->SMTPAuth = true;
-    $mail->Username = 'gongpeijie620@gmail.com'; // Your email
-    $mail->Password = SMTP_PASSWORD; // Securely stored in config.php
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS encryption
-    $mail->Port = 587; // Use 465 for SSL if needed
-
-    // Sender Information
-    $mail->setFrom('gongpeijie620@gmail.com', $siteName);
-
-    // Capture recipient info safely
-    $recipientEmail = $_POST["email"] ?? "test@example.com";
-    $recipientName = htmlspecialchars($_POST["name"] ?? "Supporter");
-
+    $mail->Username = SMTP_USERNAME;
+    $mail->Password = SMTP_PASSWORD;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = SMTP_PORT;
+    $mail->setFrom(SMTP_USERNAME, $siteName);
     $mail->addAddress($recipientEmail);
+    $mail->Subject = "Thanks for contacting " . $siteName;
+    $mail->Body = "Hello " . $recipientName . ",\n\nThanks for reaching out. We'll get back to you soon!";
+    $mail->send();
 
-    // Email Content
-    $mail->Subject = "Thank You for Contacting Us!";
-    $mail->Body = "Hello $recipientName,\n\nThanks for reaching out. We'll get back to you soon!";
-
-    // Send Email & Handle Errors
-    if ($mail->send()) {
-        echo "✅ Message sent successfully to $recipientEmail!";
-    } else {
-        echo "❌ Error sending email: " . $mail->ErrorInfo;
-    }
-
-} catch (Exception $e) {
-    echo "❌ PHPMailer Exception: " . $e->getMessage();
+    echo "Message sent successfully.";
+} catch (Exception $exception) {
+    error_log("CCC email error: " . $exception->getMessage());
+    http_response_code(502);
+    echo "We could not send your message. Please try again later.";
 }
-?>

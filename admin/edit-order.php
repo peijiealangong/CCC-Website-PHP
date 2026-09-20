@@ -8,16 +8,24 @@ require_once __DIR__ . "/../includes/database.php";
 require_once __DIR__ . "/../includes/admin-header.php";
 
 
-$id = $_GET["id"];
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+if (!$id) {
+    http_response_code(404);
+    exit("Order not found.");
+}
 
 
 
 // Update order
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    requireValidCSRFToken();
 
-
-    $status = $_POST["status"];
+    $status = $_POST["status"] ?? "";
+    $allowedStatuses = ["Pending", "Processing", "Shipped", "Completed", "Cancelled"];
+    if (!in_array($status, $allowedStatuses, true)) {
+        exit("Invalid order status.");
+    }
 
 
     $stmt = $conn->prepare(
@@ -71,6 +79,11 @@ $stmt->execute();
 
 $order = $stmt->get_result()->fetch_assoc();
 
+if (!$order) {
+    http_response_code(404);
+    exit("Order not found.");
+}
+
 
 
 ?>
@@ -105,6 +118,7 @@ $order = $stmt->get_result()->fetch_assoc();
 
 
 <form method="POST">
+<input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(createCSRFToken(), ENT_QUOTES, "UTF-8"); ?>">
 
 
 <label>
@@ -172,3 +186,4 @@ Save Changes
 </main>
 
 </div>
+<?php require_once __DIR__ . "/../includes/admin-footer.php"; ?>

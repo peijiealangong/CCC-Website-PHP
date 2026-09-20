@@ -6,7 +6,18 @@ requireAdmin();
 require_once __DIR__ . "/../includes/database.php";
 
 
-$id=$_GET["id"];
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
+    exit("Method not allowed.");
+}
+
+requireValidCSRFToken();
+$id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+
+if (!$id || !$dbAvailable) {
+    header("Location: donations.php", true, 303);
+    exit;
+}
 
 
 $stmt=$conn->prepare(
@@ -23,7 +34,7 @@ $id
 $stmt->execute();
 
 
-header("Location: donations.php");
+header("Location: donations.php", true, 303);
 
 exit;
 

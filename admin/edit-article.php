@@ -8,15 +8,22 @@ require_once __DIR__ . "/../includes/database.php";
 require_once __DIR__ . "/../includes/admin-header.php";
 
 
-$id = $_GET["id"];
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+if (!$id) {
+    http_response_code(404);
+    exit("Article not found.");
+}
 
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    requireValidCSRFToken();
 
-
-    $title = $_POST["title"];
-    $content = $_POST["content"];
+    $title = trim($_POST["title"] ?? "");
+    $content = trim($_POST["content"] ?? "");
+    if ($title === "" || $content === "" || strlen($title) > 180) {
+        exit("Please provide a title up to 180 characters and article content.");
+    }
 
 
     $stmt = $conn->prepare(
@@ -60,6 +67,11 @@ $stmt->execute();
 
 $article = $stmt->get_result()->fetch_assoc();
 
+if (!$article) {
+    http_response_code(404);
+    exit("Article not found.");
+}
+
 
 
 ?>
@@ -69,6 +81,7 @@ $article = $stmt->get_result()->fetch_assoc();
 
 
 <form method="POST">
+<input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(createCSRFToken(), ENT_QUOTES, "UTF-8"); ?>">
 
 
 <label>
@@ -80,6 +93,7 @@ Title:
 <input
 type="text"
 name="title"
+maxlength="180"
 value="<?php echo htmlspecialchars($article["title"]); ?>"
 required
 >
@@ -118,3 +132,4 @@ Save Changes
 </main>
 
 </div>
+<?php require_once __DIR__ . "/../includes/admin-footer.php"; ?>

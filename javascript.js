@@ -1,10 +1,10 @@
 /**
  * CLIMATE CHANGE CLUB - MASTER CORE SCRIPT
- * Version: 4.0.0
- * Beta Version: 4.0
+ * Version: 5.0.0
+ * Beta Version: 5.0
  */
 
-const LATEST_BETA_VERSION = "4.0";
+const LATEST_BETA_VERSION = "5.0";
 const SCRIPT_SOURCES = {
     confetti: "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js",
     elfsight: "https://elfsightcdn.com/platform.js",
@@ -14,6 +14,7 @@ const SCRIPT_SOURCES = {
 const scriptLoaders = new Map();
 
 document.addEventListener("DOMContentLoaded", () => {
+    ensureMainLandmark();
     initTheme();
     initThemePickers();
     initMobileNav();
@@ -36,7 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     initMiniGame();
     initClimateDefenderWhenReady();
     initBetaForm();
+    initActionPlanner();
 });
+
+function ensureMainLandmark() {
+    const main = document.querySelector("main");
+    if (main && !main.id) main.id = "main-content";
+}
 
 function loadScriptOnce(key, src, attributes = {}) {
     if (scriptLoaders.has(key)) return scriptLoaders.get(key);
@@ -357,7 +364,7 @@ function setupUpdateNotification() {
     const updatePopup = document.getElementById("updatePopup");
     const updateBtn = document.getElementById("updateBtn");
     const updateClose = updatePopup ? updatePopup.querySelector(".popup-close") : null;
-    const currentVersion = "4.0.0";
+    const currentVersion = "5.0.0";
     const dismissedKey = `dismissedUpdatePopup-${currentVersion}`;
 
     if (!updatePopup || !updateBtn) return;
@@ -384,7 +391,7 @@ function setupUpdateNotificationBETA() {
     const updateBtn = updatePopup ? updatePopup.querySelector("button.btn-primary") : null;
     const updateClose = updatePopup ? updatePopup.querySelector(".popup-close") : null;
     const isBetaLoggedIn = localStorage.getItem("betaLoggedIn") || sessionStorage.getItem("betaLoggedIn");
-    const currentVersion = "4.0";
+    const currentVersion = "5.0";
     const dismissedKey = `dismissedUpdatePopup-${currentVersion}`;
 
     if (!isBetaLoggedIn || !updatePopup || !updateBtn) return;
@@ -605,6 +612,45 @@ function initSmartStack() {
     });
 
     startAutoRotate();
+}
+
+function initActionPlanner() {
+    const choices = Array.from(document.querySelectorAll("[data-action-choice]"));
+    const panels = Array.from(document.querySelectorAll("[data-action-panel]"));
+    if (!choices.length || !panels.length) return;
+
+    const activate = (choice) => {
+        const target = choice.getAttribute("data-action-choice");
+        if (!target) return;
+
+        choices.forEach((item) => {
+            const isActive = item === choice;
+            item.classList.toggle("is-selected", isActive);
+            item.setAttribute("aria-selected", String(isActive));
+            item.tabIndex = isActive ? 0 : -1;
+        });
+
+        panels.forEach((panel) => {
+            const isActive = panel.getAttribute("data-action-panel") === target;
+            panel.hidden = !isActive;
+        });
+    };
+
+    choices.forEach((choice, index) => {
+        choice.tabIndex = choice.getAttribute("aria-selected") === "true" ? 0 : -1;
+        choice.addEventListener("click", () => activate(choice));
+        choice.addEventListener("keydown", (event) => {
+            if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"].includes(event.key)) return;
+            event.preventDefault();
+            let nextIndex = index;
+            if (event.key === "Home") nextIndex = 0;
+            else if (event.key === "End") nextIndex = choices.length - 1;
+            else if (event.key === "ArrowDown" || event.key === "ArrowRight") nextIndex = (index + 1) % choices.length;
+            else nextIndex = (index - 1 + choices.length) % choices.length;
+            choices[nextIndex].focus();
+            activate(choices[nextIndex]);
+        });
+    });
 }
 
 function initClimateBuddy() {

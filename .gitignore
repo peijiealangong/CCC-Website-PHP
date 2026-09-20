@@ -1,0 +1,9 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Local tooling
+node_modules/
+coverage/
+.DS_Store

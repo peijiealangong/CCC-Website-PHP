@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/config.php";
+
 // Several legacy pages include this file more than once. Keep the shared
 // markup and session initialization single-run.
 if (defined("CCC_HEADER_INCLUDED")) {
@@ -7,18 +9,15 @@ if (defined("CCC_HEADER_INCLUDED")) {
 }
 define("CCC_HEADER_INCLUDED", true);
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+ccc_start_session();
 
 
 /*
     Safe defaults
 */
 
-if (!isset($siteName)) {
-    $siteName = "Climate Change Club";
-}
+$pageTitle = $pageTitle ?? $siteName;
+$pageDescription = $pageDescription ?? "Join Climate Change Club for student-led climate action, projects, articles, videos, and practical ways to help.";
 
 
 /*
@@ -35,7 +34,7 @@ $requestPath = parse_url($_SERVER["REQUEST_URI"] ?? "/", PHP_URL_PATH) ?: "/";
 if ($requestPath === "/") {
     $requestPath = "/index.php";
 }
-$canonicalUrl = "https://climatechangeclub.pages.dev" . $requestPath;
+$canonicalUrl = $siteURL . $requestPath;
 $styleVersion = (string) (@filemtime(__DIR__ . "/../style.css") ?: "1");
 $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 
@@ -52,7 +51,7 @@ $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-<meta name="description" content="Join Climate Change Club for student-led climate action, projects, articles, videos, and practical ways to help." />
+<meta name="description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, "UTF-8"); ?>" />
 
 <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -64,23 +63,21 @@ $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 
 <meta property="og:type" content="website" />
 
-<meta property="og:title" content="<?php echo htmlspecialchars($siteName); ?>" />
+<meta property="og:title" content="<?php echo htmlspecialchars($pageTitle, ENT_QUOTES, "UTF-8"); ?>" />
 
-<meta property="og:description" content="Student-led climate projects, articles, videos, and climate action." />
+<meta property="og:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, "UTF-8"); ?>" />
 
 <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, "UTF-8"); ?>" />
 
 
 <meta name="twitter:card" content="summary_large_image" />
 
-<meta name="twitter:title" content="<?php echo htmlspecialchars($siteName); ?>" />
-<meta name="twitter:description" content="Student-led climate projects, articles, videos, and climate action." />
+<meta name="twitter:title" content="<?php echo htmlspecialchars($pageTitle, ENT_QUOTES, "UTF-8"); ?>" />
+<meta name="twitter:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, "UTF-8"); ?>" />
 
 
 
-<title>
-<?php echo htmlspecialchars($siteName); ?>
-</title>
+<title><?php echo htmlspecialchars($pageTitle, ENT_QUOTES, "UTF-8"); ?></title>
 
 
 
@@ -101,6 +98,9 @@ $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 
 
 <body>
+
+
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 
 

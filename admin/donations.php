@@ -106,9 +106,11 @@ $<?php echo $donation["amount"]; ?>
 
 <td>
 
-<a href="delete-donation.php?id=<?php echo $donation["id"]; ?>">
-🗑️
-</a>
+<form class="inline-form" method="post" action="delete-donation.php" onsubmit="return confirm('Delete this donation?');">
+    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(createCSRFToken(), ENT_QUOTES, "UTF-8"); ?>">
+    <input type="hidden" name="id" value="<?php echo (int) $donation["id"]; ?>">
+    <button class="text-button danger-button" type="submit" aria-label="Delete donation">🗑️</button>
+</form>
 
 </td>
 
@@ -124,3 +126,4 @@ $<?php echo $donation["amount"]; ?>
 </main>
 
 </div>
+<?php require_once __DIR__ . "/../includes/admin-footer.php"; ?>

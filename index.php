@@ -1,469 +1,161 @@
-<?php include "includes/header.php"; ?>
-
-<!-- Version 4.0.0 | Beta Version 4.0 | Liquid Glass climate command center renovation -->
-
-
-
 <?php
 
+$siteName = "Climate Change Club";
+$pageTitle = "Climate Change Club | Student-led action for a healthier future";
+$pageDescription = "Discover student-led climate projects, practical ways to help, community updates, and learning resources from Climate Change Club.";
+
+include "includes/header.php";
 include "includes/database.php";
-
-
-$totalMoney = 0;
-$totalTrees = 0;
-
-if ($dbAvailable) {
-    $donationQuery = $conn->query("
-        SELECT
-            SUM(amount) AS totalMoney,
-            SUM(trees) AS totalTrees
-        FROM donations
-    ");
-
-    if ($donationQuery) {
-        $donationData = $donationQuery->fetch_assoc();
-        $totalMoney = (float) ($donationData["totalMoney"] ?? 0);
-        $totalTrees = (int) ($donationData["totalTrees"] ?? 0);
-    }
-}
-
 
 $moneyGoal = 5000;
 $treeGoal = 500;
+$totalMoney = 0.0;
+$totalTrees = 0;
 
-
-$moneyPercent = ($totalMoney / $moneyGoal) * 100;
-$treePercent = ($totalTrees / $treeGoal) * 100;
-
-
-if($moneyPercent > 100){
-    $moneyPercent = 100;
+if ($dbAvailable) {
+    $impact = $conn->query("SELECT COALESCE(SUM(amount), 0) AS totalMoney, COALESCE(SUM(trees), 0) AS totalTrees FROM donations");
+    if ($impact) {
+        $impactData = $impact->fetch_assoc() ?? [];
+        $totalMoney = max(0, (float) ($impactData["totalMoney"] ?? 0));
+        $totalTrees = max(0, (int) ($impactData["totalTrees"] ?? 0));
+    }
 }
 
-
-if($treePercent > 100){
-    $treePercent = 100;
-}
-
-
+$moneyPercent = min(100, round(($totalMoney / $moneyGoal) * 100));
+$treePercent = min(100, round(($totalTrees / $treeGoal) * 100));
 ?>
 
-    <div class="nav-widget elfsight-app-15f6acf7-38c9-47bb-9d32-bafd4fa48ab0" data-elfsight-app-lazy></div>
-<main>
-        <section class="hero home-hero ccc-command-hero" aria-labelledby="hero-title">
-            <div class="home-hero-layout">
-                <div class="hero-content reveal-on-scroll">
-                    <div class="hero-logo">
-                        <i class="fas fa-globe-americas" aria-hidden="true"></i>
-                        <span class="logo-text"><?php echo $siteName; ?></span>
-                    </div>
-                    <span class="hero-tag">Version 4.0 climate command center</span>
-                    <h1 id="hero-title"><?php echo $siteName; ?></h1>
-                    <p>A redesigned student action hub with fast project paths, smart climate prompts, live progress, videos, games, and practical ways to help.</p>
-                    <div class="hero-btns">
-                        <a class="btn" href="#mission"><i class="fas fa-bolt" aria-hidden="true"></i> Start Action</a>
-                        <a class="btn-ghost" href="watch.php"><i class="fas fa-play" aria-hidden="true"></i> Watch Videos</a>
-                        <a class="btn-ghost" href="#climate-defender"><i class="fas fa-gamepad" aria-hidden="true"></i> Climate Defender</a>
-                        <button class="btn-game" id="openGameBtn" aria-label="Open Carbon Catcher Game"><i class="fas fa-cloud-sun" aria-hidden="true"></i> Carbon Catcher</button>
-                    </div>
-                    <div class="hero-pill-grid">
-                        <span class="hero-pill">28 active campaigns</span>
-                        <span class="hero-pill">18 learning sessions</span>
-                        <span class="hero-pill">1,250 student members</span>
-                    </div>
-                </div>
-
-                <aside class="action-watch reveal-on-scroll" aria-label="Climate action snapshot">
-                    <div class="watch-bezel">
-                        <div class="watch-face">
-                            <div class="watch-status-line">
-                                <span>CCC</span>
-                                <span>4.0</span>
-                            </div>
-                            <div class="watch-time">Action</div>
-                            <div class="watch-date">Today</div>
-                            <div class="ring-cluster" aria-label="Climate progress rings">
-                                <div class="activity-ring ring-trees" style="--value: 5; --ring-color: #61d394;">
-                                    <span>Trees</span>
-                                    <strong>5%</strong>
-                                </div>
-                                <div class="activity-ring ring-funds" style="--value: 15; --ring-color: #f2c94c;">
-                                    <span>Funds</span>
-                                    <strong>15%</strong>
-                                </div>
-                                <div class="activity-ring ring-members" style="--value: 20; --ring-color: #66d9ef;">
-                                    <span>Members</span>
-                                    <strong>20%</strong>
-                                </div>
-                            </div>
-                            <div class="watch-hint">
-                                <i class="fas fa-magic" aria-hidden="true"></i>
-                                <span>New: Smart climate prompts now surface the next best action.</span>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
+<main id="main-content" class="site-home">
+    <section class="home-hero v5-hero" aria-labelledby="home-title">
+        <div class="v5-hero-copy reveal-on-scroll">
+            <p class="eyebrow"><i class="fas fa-sparkles" aria-hidden="true"></i> Student-led climate action</p>
+            <h1 id="home-title">Small actions. <span>Real momentum.</span></h1>
+            <p class="hero-lede">Climate Change Club turns curiosity into practical projects, shared learning, and a stronger local community. Start with one meaningful step today.</p>
+            <div class="hero-actions">
+                <a class="btn-primary" href="#take-action"><i class="fas fa-seedling" aria-hidden="true"></i> Find my next step</a>
+                <a class="btn-secondary" href="projects.php"><i class="fas fa-arrow-right" aria-hidden="true"></i> Explore projects</a>
             </div>
-        </section>
-        <section id="mission" class="intro-grid mission-grid">
-            <div class="intro-card">
-                <i class="fas fa-leaf fa-3x" aria-hidden="true"></i>
-                <h2>Our Mission</h2>
-                <p>Driving education and direct action to halt the global climate crisis.</p>
-                <a href="about.php" class="btn-primary"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn More</a>
-            </div>
-            
-            <div class="intro-card">
-                <i class="fas fa-tools fa-3x" aria-hidden="true"></i>
-                <h2>Active Projects</h2>
-                <p>From local campus composting to city-wide advocacy and policy.</p>
-                <a href="projects.php" class="btn-primary"><i class="fas fa-seedling" aria-hidden="true"></i> View Projects</a>
-            </div>
-            <div class="intro-card">
-                <i class="fas fa-calendar-alt fa-3x" aria-hidden="true"></i>
-                <h2>Global Events</h2>
-                <p>Join our next march or community workshop this coming weekend.</p>
-                <a href="meetings.php" class="btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i> See Calendar</a>
-            </div>
-        </section>
-
-        <section class="command-stack reveal-on-scroll" aria-labelledby="stack-title">
-            <div class="section-heading command-heading">
-                <span class="section-kicker">Smart Stack</span>
-                <h2 id="stack-title">Climate actions, surfaced faster</h2>
-                <p>Project links, climate reminders, video paths, and fundraiser next steps now sit in a compact dashboard built for quick decisions.</p>
-            </div>
-            <div class="command-stack-layout">
-                <div class="smart-stack-panel" aria-live="polite">
-                    <div class="stack-toolbar" role="tablist" aria-label="Climate action filters">
-                        <button class="stack-tab is-active" type="button" data-stack-target="today" role="tab" aria-selected="true" title="Show today's climate prompt"><i class="fas fa-sun" aria-hidden="true"></i><span>Today</span></button>
-                        <button class="stack-tab" type="button" data-stack-target="projects" role="tab" aria-selected="false" title="Show project prompt"><i class="fas fa-project-diagram" aria-hidden="true"></i><span>Projects</span></button>
-                        <button class="stack-tab" type="button" data-stack-target="watch" role="tab" aria-selected="false" title="Show video prompt"><i class="fas fa-video" aria-hidden="true"></i><span>Watch</span></button>
-                        <button class="stack-tab" type="button" data-stack-target="funding" role="tab" aria-selected="false" title="Show funding prompt"><i class="fas fa-hand-holding-heart" aria-hidden="true"></i><span>Funding</span></button>
-                    </div>
-                    <article class="stack-card is-active" data-stack-card="today">
-                        <span class="stack-eyebrow">Smart hint</span>
-                        <h3>Turn one idea into one climate action.</h3>
-                        <p>Pick a project, share the club hub, or join the mailing list before you leave.</p>
-                        <a class="btn-secondary" href="#newsletter"><i class="fas fa-paper-plane" aria-hidden="true"></i> Join Updates</a>
-                    </article>
-                    <article class="stack-card" data-stack-card="projects">
-                        <span class="stack-eyebrow">Project focus</span>
-                        <h3>Tree planting is still the main field goal.</h3>
-                        <p>Every $10 raised helps move the club toward another tree and more local action.</p>
-                        <a class="btn-secondary" href="projects.php"><i class="fas fa-tree" aria-hidden="true"></i> Open Projects</a>
-                    </article>
-                    <article class="stack-card" data-stack-card="watch">
-                        <span class="stack-eyebrow">Watch next</span>
-                        <h3>The video hub keeps lessons easy to find.</h3>
-                        <p>Use the Watch page for explainers, project updates, and climate learning materials.</p>
-                        <a class="btn-secondary" href="watch.php"><i class="fas fa-play" aria-hidden="true"></i> Open Watch</a>
-                    </article>
-                    <article class="stack-card" data-stack-card="funding">
-                        <span class="stack-eyebrow">Support</span>
-                        <h3>Fresh lemonade can help grow our next tree.</h3>
-                        <p>This summer, we are going to set up a lemonade stand to raise money for tree planting and student climate education.</p>
-                        <button class="btn-secondary" type="button" data-open-donate><i class="fas fa-heart" aria-hidden="true"></i> Donate</button>
-                    </article>
-                </div>
-
-                <div class="climate-buddy-panel">
-                    <span class="section-kicker">Climate Buddy</span>
-                    <h3>Personal action prompt</h3>
-                    <p id="coachMessage">Check one club update, then choose one action you can complete today.</p>
-                    <button id="coachRefresh" class="btn-primary" type="button"><i class="fas fa-arrows-rotate" aria-hidden="true"></i> New Prompt</button>
-                </div>
-
-                <div class="field-notes-panel">
-                    <span class="section-kicker">Field Notes</span>
-                    <h3>Save your next action</h3>
-                    <textarea id="climateNoteInput" rows="4" maxlength="220" placeholder="Example: Ask two friends to join the next cleanup."></textarea>
-                    <div class="field-note-actions">
-                        <button id="saveClimateNote" class="btn-primary" type="button"><i class="fas fa-floppy-disk" aria-hidden="true"></i> Save</button>
-                        <button id="clearClimateNote" class="btn-ghost" type="button"><i class="fas fa-trash" aria-hidden="true"></i> Clear</button>
-                    </div>
-                    <p id="climateNoteStatus" class="note-status" aria-live="polite">Notes stay in this browser.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="climate-defender" class="defender-section reveal-on-scroll" aria-labelledby="defender-title">
-            <div class="defender-layout">
-                <div class="defender-copy">
-                    <span class="section-kicker">Homepage Game</span>
-                    <h2 id="defender-title">Climate Defender</h2>
-                    <p>Collect clean-energy powerups, dodge pollution hazards, and keep your climate shield alive as the pace rises.</p>
-                </div>
-                <div class="defender-shell">
-                    <div class="defender-hud" aria-live="polite">
-                        <div class="defender-stat"><span>Score</span><strong id="defenderScore">0</strong></div>
-                        <div class="defender-stat"><span>Lives</span><strong id="defenderLives">3</strong></div>
-                        <div class="defender-stat"><span>Level</span><strong id="defenderLevel">1</strong></div>
-                        <div class="defender-stat"><span>Best</span><strong id="defenderBest">0</strong></div>
-                    </div>
-                    <div class="defender-canvas-wrap">
-                        <canvas id="defenderCanvas" width="720" height="420" aria-label="Climate Defender game board"></canvas>
-                    </div>
-                    <p id="defenderStatus" class="defender-status">Ready. Collect clean energy and avoid pollution.</p>
-                    <div class="defender-controls" aria-label="Climate Defender controls">
-                        <button id="defenderStart" type="button" class="btn">Start</button>
-                        <button id="defenderPause" type="button" class="btn-ghost">Pause</button>
-                        <button id="defenderReset" type="button" class="btn-ghost">Reset</button>
-                    </div>
-                    <div class="defender-pad" aria-label="Touch movement controls">
-                        <button type="button" class="btn-ghost" data-defender-move="up" aria-label="Move up">Up</button>
-                        <button type="button" class="btn-ghost" data-defender-move="left" aria-label="Move left">Left</button>
-                        <button type="button" class="btn-ghost" data-defender-move="down" aria-label="Move down">Down</button>
-                        <button type="button" class="btn-ghost" data-defender-move="right" aria-label="Move right">Right</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-<!-- Elfsight Photo Gallery | Earth Day Photo Gallery -->
-<div class="elfsight-app-130979ed-ba23-4490-8172-4d8e61647aa8" data-elfsight-app-lazy></div>
-<!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
-<div class="elfsight-app-33092e72-36b2-41e9-a78d-b68cc319903c" data-elfsight-app-lazy></div>
-
-        <div class="jump-anchor">
-            <a href="watch.php" class="btn-secondary">Watch Climate Videos</a>
+            <dl class="hero-trust-list" aria-label="Club focus areas">
+                <div><dt>Learn</dt><dd>Clear, useful climate resources</dd></div>
+                <div><dt>Act</dt><dd>Projects with a local impact</dd></div>
+                <div><dt>Share</dt><dd>Ideas that grow through community</dd></div>
+            </dl>
         </div>
-<!-- Elfsight Before and After Slider | Climate Change Before and After Slider -->
-<div class="elfsight-app-ea01090c-eff4-45d4-a0e9-6faea39bbff7" data-elfsight-app-lazy></div>
-    <section class="impact-stats action-rings-section reveal-on-scroll" aria-labelledby="impact-title">
 
-<span class="section-kicker">
-Action Rings
-</span>
-
-
-<h2 id="impact-title">
-Live Impact Tracker
-</h2>
-
-
-
-<div class="stat-grid">
-
-
-<div class="stat-box">
-
-
-<div class="stat-ring" style="--value: <?php echo $treePercent; ?>;">
-<span>
-<?php echo round($treePercent); ?>%
-</span>
-</div>
-
-
-<strong>
-Trees Planted
-</strong>
-
-
-<div class="progress-container">
-
-<div class="progress-bar" 
-style="width: <?php echo $treePercent; ?>%">
-</div>
-
-</div>
-
-
-<span>
-<?php echo $totalTrees; ?> / <?php echo $treeGoal; ?>
-</span>
-
-
-</div>
-
-
-
-
-
-<div class="stat-box">
-
-
-<div class="stat-ring" style="--value: <?php echo $moneyPercent; ?>;">
-<span>
-<?php echo round($moneyPercent); ?>%
-</span>
-</div>
-
-
-<strong>
-Funding Raised
-</strong>
-
-
-<div class="progress-container">
-
-<div class="progress-bar"
-style="width: <?php echo $moneyPercent; ?>%">
-</div>
-
-</div>
-
-
-<span>
-$<?php echo number_format($totalMoney,2); ?> / $<?php echo number_format($moneyGoal); ?>
-</span>
-
-
-</div>
-
-
-
-
-
-<div class="stat-box">
-
-
-<div class="stat-ring" style="--value: 20;">
-<span>
-20%
-</span>
-</div>
-
-
-<strong>
-Members Joined
-</strong>
-
-
-<div class="progress-container">
-
-<div class="progress-bar"
-style="width:20%">
-</div>
-
-</div>
-
-
-<span>
-200 / 1,000
-</span>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-<!-- Elfsight Audio Player | Climate Change Club Website Widget -->
-<div class="elfsight-app-76a17517-75e9-4e86-815d-12184c67aff7" data-elfsight-app-lazy></div>
-
-<!-- Elfsight Slider | Untitled Slider -->
-<div class="elfsight-app-701af9a8-950c-43c0-bbb3-5b444664f9b8" data-elfsight-app-lazy></div>
-        <section id="newsletter" class="newsletter-section reveal-on-scroll">
-            <div class="newsletter-card">
-                <div class="live-badge">
-                    <span class="dot"></span> 
-                    <span id="member-count">Checking...</span> students joined
-                </div>
-                <div class="newsletter-icon">
-                    <i class="fas fa-file-signature" aria-hidden="true"></i>
-                </div>
-                <h2>Climate Crisis Newsletter</h2>
-                <p>Subscribe to receive our latest <strong>investigative reports</strong> directly in your inbox.</p>
-                <div class="newsletter-portal">
-                    <a href="https://forms.gle/8BBaZFaykad2XnYF9" target="_blank" rel="noopener"
-                       data-url="https://forms.gle/8BBaZFaykad2XnYF9" 
-                       class="btn-primary btn-large" 
-                       id="confettiTrigger">
-                        Join the Mailing List <i class="fas fa-paper-plane"></i>
-                    </a>
-                </div>
-                <p class="privacy-note">Action-focused. Zero ads. Community driven.</p>
+        <aside class="hero-impact-card reveal-on-scroll" aria-label="Tree planting initiative">
+            <div class="hero-impact-topline"><span>Seasonal focus</span><i class="fas fa-leaf" aria-hidden="true"></i></div>
+            <h2>Planting roots for a healthier future</h2>
+            <p>Our summer lemonade stand will help fund tree planting and student climate education.</p>
+            <div class="impact-meter">
+                <div class="impact-meter-label"><span>Tree goal</span><strong><?php echo $treePercent; ?>%</strong></div>
+                <div class="progress-container" role="progressbar" aria-label="Tree planting goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<?php echo $treePercent; ?>"><div class="progress-bar" style="width: <?php echo $treePercent; ?>%"></div></div>
+                <small><?php echo number_format($totalTrees); ?> of <?php echo number_format($treeGoal); ?> trees funded</small>
             </div>
-        </section>
-<!-- Elfsight Calculator | Carbon Footprint Calculator -->
-<div class="elfsight-app-cb7069d8-2a79-40f7-8978-6f6631e5e00b" data-elfsight-app-lazy></div>
+            <a href="projects.php" class="text-link">See the initiative <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </aside>
+    </section>
 
-        <div class="celebrate-container" style="text-align: center; margin: 50px 0;">
-            <button class="btn-celebrate" onclick="showCelebration()">
-                <i class="fas fa-trophy" aria-hidden="true"></i> Milestone Reward
-            </button>
-        </div> 
-
-        <!--<section id="video-section" class="video-section reveal-on-scroll">
-            <h2>A Sneak Peek to our weekly lessons, coming up soon!</h2>
-            <div class="video-container">
-                <video loading="lazy" preload="none" controls width="100%" poster="video-thumbnail.jpg">
-                    <source src="Videos/Climate Change Club Weekly Lessons Trailor.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+    <section id="take-action" class="action-planner reveal-on-scroll" aria-labelledby="action-title">
+        <div class="section-intro">
+            <p class="eyebrow">Choose a starting point</p>
+            <h2 id="action-title">Your next climate action, made simple</h2>
+            <p>Pick what feels useful right now. The club will point you to a clear next step — no experience required.</p>
+        </div>
+        <div class="action-planner-grid">
+            <div class="action-choice-list" role="tablist" aria-label="Choose an action path">
+                <button class="action-choice is-selected" type="button" role="tab" aria-selected="true" aria-controls="action-project" id="tab-project" data-action-choice="project">
+                    <i class="fas fa-people-group" aria-hidden="true"></i><span><strong>Join a project</strong><small>Help make a visible local difference.</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+                <button class="action-choice" type="button" role="tab" aria-selected="false" aria-controls="action-learn" id="tab-learn" data-action-choice="learn">
+                    <i class="fas fa-book-open" aria-hidden="true"></i><span><strong>Build knowledge</strong><small>Find a topic, video, or article to explore.</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+                <button class="action-choice" type="button" role="tab" aria-selected="false" aria-controls="action-share" id="tab-share" data-action-choice="share">
+                    <i class="fas fa-bullhorn" aria-hidden="true"></i><span><strong>Spread the word</strong><small>Bring a friend, idea, or question to the club.</small></span><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
             </div>
-        </section>-->
 
-        <section class="color-panel reveal-on-scroll">
-            <span class="section-kicker">Personalization</span>
-            <h3>Personalize Your Experience</h3>
-            <div class="swatch-container">
-        <button class="swatch" style="background: white;" onclick="changeColor('white')" title="White"></button>
-        <button class="swatch" style="background: blue;" onclick="changeColor('blue')" title="Blue"></button>
-        <button class="swatch" style="background: lightblue;" onclick="changeColor('lightblue')" title="Light Blue"></button>
-        <button class="swatch" style="background: #a8dadc;" onclick="changeColor('#a8dadc')" title="Polar Ice"></button>
-        <button class="swatch" style="background: #2a9d8f;" onclick="changeColor('#2a9d8f')" title="Forest Floor"></button>
-        <button class="swatch" style="background: green;" onclick="changeColor('green')" title="Green"></button>
-        <button class="swatch" style="background: #d8f3dc;" onclick="changeColor('#d8f3dc')" title="Wind Whisper"></button>
-        <button class="swatch" style="background: #f4d35e;" onclick="changeColor('#f4d35e')" title="Solar Glow"></button>
-        <button class="swatch" style="background: #f4a261;" onclick="changeColor('#f4a261')" title="Sunset Orange"></button>
-        <button class="swatch" style="background: #e9c46a;" onclick="changeColor('#e9c46a')" title="Desert Sand"></button>
-        <button class="swatch" style="background: red;" onclick="changeColor('red')" title="Red"></button>
-        <button class="swatch" style="background: #e63946;" onclick="changeColor('#e63946')" title="Wildfire"></button>
-        <button class="swatch" style="background: #ffcad4;" onclick="changeColor('#ffcad4')" title="Spring Bloom"></button>
-        <button class="swatch" style="background: #5e548e;" onclick="changeColor('#5e548e')" title="Midnight"></button>
-        <button class="swatch" style="background: #264653;" onclick="changeColor('#264653')" title="Ocean Depth"></button>
-        <button class="swatch" style="background: #6c757d;" onclick="changeColor('#6c757d')" title="Storm Sky"></button>
-        <button class="swatch" style="background: #ddd;" onclick="changeColor('')" title="Reset"></button>
+            <article class="action-result" id="action-project" role="tabpanel" aria-labelledby="tab-project" data-action-panel="project">
+                <span class="result-number">01</span>
+                <h3>Start where your energy is</h3>
+                <p>Explore tree planting, recycling, and student-led sustainability work. Choose one project you would be excited to support.</p>
+                <a class="btn-primary" href="projects.php">View active projects</a>
+            </article>
+            <article class="action-result" id="action-learn" role="tabpanel" aria-labelledby="tab-learn" data-action-panel="learn" hidden>
+                <span class="result-number">02</span>
+                <h3>Learn one thing worth sharing</h3>
+                <p>Use the video hub or Climate Chronicle to find a clear idea, then talk it through with someone you know.</p>
+                <a class="btn-primary" href="watch.php">Open the video hub</a>
+            </article>
+            <article class="action-result" id="action-share" role="tabpanel" aria-labelledby="tab-share" data-action-panel="share" hidden>
+                <span class="result-number">03</span>
+                <h3>Turn one conversation into momentum</h3>
+                <p>Share a project idea, ask about the next meeting, or invite someone who cares about the same issue.</p>
+                <a class="btn-primary" href="contact.php">Send the club a message</a>
+            </article>
+        </div>
+    </section>
+
+    <section class="home-focus-grid" aria-labelledby="focus-title">
+        <article class="focus-story reveal-on-scroll">
+            <div>
+                <p class="eyebrow">What we are working on</p>
+                <h2 id="focus-title">A summer of local action</h2>
+                <p>We are building toward a lemonade stand that supports tree planting and climate education. It is a simple project with room for many kinds of help.</p>
+                <ul class="check-list">
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Fund trees and student climate learning</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Create a welcoming way to join in</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Share progress as the project grows</li>
+                </ul>
+                <a class="text-link" href="notices.php">Read the latest club updates <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
-        </section>
-    </main>
+            <figure class="focus-poster">
+                <img src="images/Summer%20Climate%20Change%20Club%20Tree%20Planting%20Poster%202026.png" alt="Climate Change Club summer tree planting poster" loading="lazy">
+            </figure>
+        </article>
 
-    <div id="gameModal" class="game-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="game-title">
-        <div class="game-container">
-            <button class="close-game" id="closeGameBtn" type="button" aria-label="Close Carbon Catcher">&times;</button>
-            <h2 id="game-title"><i class="fas fa-leaf" aria-hidden="true"></i> Carbon Catcher</h2>
-            <p>Click the falling CO2 clouds to clear the atmosphere!</p>
-            <div id="game-canvas">
-                <div id="score-board">Score: <span id="game-score">0</span></div>
-                <div id="high-score-board">Best: <span id="high-score">0</span></div>
+        <aside class="impact-summary reveal-on-scroll" aria-labelledby="impact-title">
+            <p class="eyebrow">Community progress</p>
+            <h2 id="impact-title">A goal you can see</h2>
+            <div class="impact-stat">
+                <div class="impact-icon trees"><i class="fas fa-tree" aria-hidden="true"></i></div>
+                <div><span>Trees funded</span><strong><?php echo number_format($totalTrees); ?><small> / <?php echo number_format($treeGoal); ?></small></strong></div>
             </div>
-            <button id="startGameBtn" class="btn-primary">Start Game</button>
-        </div>
-    </div>
+            <div class="impact-stat">
+                <div class="impact-icon funding"><i class="fas fa-hand-holding-heart" aria-hidden="true"></i></div>
+                <div><span>Funds raised</span><strong>$<?php echo number_format($totalMoney, 0); ?><small> / $<?php echo number_format($moneyGoal, 0); ?></small></strong></div>
+            </div>
+            <div class="impact-meter compact">
+                <div class="impact-meter-label"><span>Fundraising goal</span><strong><?php echo $moneyPercent; ?>%</strong></div>
+                <div class="progress-container" role="progressbar" aria-label="Fundraising goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<?php echo $moneyPercent; ?>"><div class="progress-bar" style="width: <?php echo $moneyPercent; ?>%"></div></div>
+            </div>
+            <?php if (!$dbAvailable): ?><p class="data-note"><i class="fas fa-circle-info" aria-hidden="true"></i> Progress updates will appear when the community tracker is connected.</p><?php endif; ?>
+            <button class="btn-secondary" type="button" data-open-donate><i class="fas fa-heart" aria-hidden="true"></i> Support the goal</button>
+        </aside>
+    </section>
 
-    <div id="updatePopup" class="update-popup" role="status" aria-live="polite">
-        <div class="popup-content">
-            <button class="popup-close" type="button" aria-label="Close update notification">&times;</button>
-            <p><i class="fas fa-sync-alt"></i> <strong>System Update:</strong> Version 4.0.0 Available.</p>
-            <button id="updateBtn" class="btn-primary" type="button">Refresh</button>
+    <section class="explore-section reveal-on-scroll" aria-labelledby="explore-title">
+        <div class="section-intro section-intro-inline">
+            <div><p class="eyebrow">Keep exploring</p><h2 id="explore-title">More ways to connect</h2></div>
+            <a class="text-link" href="about.php">About the club <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-    </div>
+        <div class="explore-grid">
+            <a class="explore-card" href="watch.php"><i class="fas fa-circle-play" aria-hidden="true"></i><h3>Watch & learn</h3><p>Find club videos and climate explainers.</p><span>Open Watch <i class="fas fa-arrow-right" aria-hidden="true"></i></span></a>
+            <a class="explore-card" href="articles.php"><i class="fas fa-newspaper" aria-hidden="true"></i><h3>Read stories</h3><p>Discover student perspectives and practical ideas.</p><span>Read articles <i class="fas fa-arrow-right" aria-hidden="true"></i></span></a>
+            <a class="explore-card" href="meetings.php"><i class="fas fa-calendar-days" aria-hidden="true"></i><h3>Meet the community</h3><p>Bring an idea to a workshop or club meeting.</p><span>See meetings <i class="fas fa-arrow-right" aria-hidden="true"></i></span></a>
+        </div>
+    </section>
 
-    <div id="updatePopupBETA" class="update-popup" role="status" aria-live="polite">
-        <div class="popup-content">
-            <button class="popup-close" type="button" aria-label="Close update notification">&times;</button>
-            <p><i class="fas fa-flask"></i> <strong>BETA Update:</strong> Version 4.0 Testing is ready.</p>
-            <button class="btn-primary">Update & Log In</button>
+    <section class="newsletter-section home-newsletter reveal-on-scroll" aria-labelledby="newsletter-title">
+        <div>
+            <p class="eyebrow">Stay in the loop</p>
+            <h2 id="newsletter-title">Get the next action in your inbox</h2>
+            <p>Project news, learning resources, and ways to join in — sent when there is something useful to share.</p>
         </div>
-    </div>
+        <div class="newsletter-portal">
+            <a href="https://forms.gle/8BBaZFaykad2XnYF9" target="_blank" rel="noopener" data-url="https://forms.gle/8BBaZFaykad2XnYF9" class="btn-primary btn-large" id="confettiTrigger">Join the mailing list <i class="fas fa-paper-plane" aria-hidden="true"></i></a>
+            <p class="privacy-note">Action-focused. No advertising.</p>
+        </div>
+    </section>
+</main>
 
-    <div id="videoPromoPopup" class="video-promo-popup" role="dialog" aria-label="New video alert" aria-hidden="true">
-        <button class="close-video-promo" id="closeVideoPromo" type="button" aria-label="Close video alert">&times;</button>
-        <div class="video-promo-content">
-            <h3><i class="fas fa-video" aria-hidden="true"></i> New Video Alert</h3>
-            <p>Check out the new <?php echo $siteName; ?> video hub.</p>
-            <a href="watch.php" class="btn-primary">Watch Now</a>
-        </div>
-    </div>
-<!-- Elfsight Cookie Consent | Climate Change Club Cookie Consent -->
-<div class="elfsight-app-23880d49-f430-41b0-8b19-a3839f021129" data-elfsight-app-lazy></div>
-<!-- Elfsight Accessibility | Climate Change Club Website Accessibility button -->
-<div class="elfsight-app-55baa1f4-7f05-4b47-be17-ff2f8e6710c7" data-elfsight-app-lazy></div>
-<div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
 <?php include "includes/footer.php"; ?>
- 

@@ -1,8 +1,8 @@
 <?php
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once __DIR__ . "/config.php";
+
+ccc_start_session();
 
 
 /*
@@ -12,7 +12,7 @@ function requireLogin()
 {
     if (!isset($_SESSION["user_id"])) {
 
-        header("Location: /ccc-website/login.php");
+        header("Location: " . ccc_site_path("login.php"));
         exit;
 
     }
@@ -68,4 +68,10 @@ function verifyCSRFToken($token)
         );
 }
 
-?>
+function requireValidCSRFToken(): void
+{
+    if (!verifyCSRFToken($_POST["csrf_token"] ?? "")) {
+        http_response_code(419);
+        exit("Your form session expired. Please go back and try again.");
+    }
+}

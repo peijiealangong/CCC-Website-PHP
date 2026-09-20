@@ -1,328 +1,80 @@
-<?php include "includes/header.php"; ?>
+<?php
+
+$siteName = "Climate Change Club";
+$pageTitle = "Project documentation | Climate Change Club";
+$pageDescription = "Release notes, setup guidance, privacy notes, and testing information for the Climate Change Club website.";
+
+include "includes/header.php";
+?>
 
 <header class="page-hero page-hero-beta">
     <div class="page-hero-content reveal-on-scroll">
-        <span class="page-kicker">Release Notes</span>
-        <h1>Project Documentation</h1>
-        <p>Stable updates, beta experiments, and development transparency for the website.</p>
+        <span class="page-kicker">Project guide</span>
+        <h1>Documentation</h1>
+        <p>A concise guide to the site, its current release, local setup, and the safeguards that keep it dependable.</p>
     </div>
 </header>
 
-    <main class="container py-5">
-<section class="current-focus">
-            <h2 class="section-title"><i class="fas fa-microscope"></i> Active Research & Dev</h2>
-            <div class="intro-grid">
-                <div class="intro-card highlighting">
-                    <span class="hero-tag tag-testing">Priority</span>
-                    <h3>Climate Command Center 4.0</h3>
-                    <p>Monitoring the new Smart Stack, Climate Buddy prompts, Field Notes storage, and homepage action ring layout after release.</p>
-                </div>
-            </div>
-        </section>
+<main id="main-content" class="content-page documentation-page">
+    <section class="content-card documentation-intro">
+        <i class="fas fa-compass" aria-hidden="true"></i>
+        <h2>Current release: v5.0.0</h2>
+        <p>Released August 22, 2026. This release replaces the crowded homepage with an action-first experience, strengthens account and administration safeguards, and makes configuration safe to deploy across environments.</p>
+        <div class="button-group">
+            <a class="btn-primary" href="#release-notes">What changed</a>
+            <a class="btn-secondary" href="#setup">Setup guide</a>
+        </div>
+    </section>
 
-        <hr class="section-divider">
+    <section id="release-notes" aria-labelledby="release-notes-title">
+        <div class="section-heading"><span class="section-kicker">Release notes</span><h2 id="release-notes-title">v5.0.0 — Action-first refresh</h2></div>
+        <div class="feature-grid">
+            <article class="feature-card"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i><h3>Clearer homepage</h3><p>The homepage now focuses on real club work, progress, next steps, and a guided action picker instead of competing popups and third-party widgets.</p></article>
+            <article class="feature-card"><i class="fas fa-universal-access" aria-hidden="true"></i><h3>More usable by everyone</h3><p>A skip link, visible keyboard focus, tab keyboard controls, semantic progress indicators, and responsive layouts improve navigation and readability.</p></article>
+            <article class="feature-card"><i class="fas fa-shield-halved" aria-hidden="true"></i><h3>Safer operations</h3><p>Configuration now comes from environment variables, sessions use safer cookie defaults, and all admin changes require a CSRF token and POST request.</p></article>
+            <article class="feature-card"><i class="fas fa-gauge-high" aria-hidden="true"></i><h3>Less page weight</h3><p>The homepage no longer loads a gallery of optional external widgets or interruption popups. Essential content is available without JavaScript.</p></article>
+        </div>
+    </section>
 
-        <div class="timeline-container">
-            
-            <div class="timeline-column">
-                <h2 class="section-title"><i class="fas fa-check-circle"></i> Stable Updates</h2>
-                <p class="versions-subtitle">Official production builds of the main platform.</p>
-                <div class="history-timeline">
-                    <div class="history-item stable">
-                        <div class="version-badge">v4.0.0</div>
-                        <div class="history-content">
-                            <h3>Liquid Glass Climate Command Center Renovation</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: June 29, 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Rebuilt the homepage hero as a watchOS 26-inspired climate command center</li>
-                                <li><i class="fas fa-check"></i>Added Smart Stack action cards for today's prompt, projects, videos, and funding support</li>
-                                <li><i class="fas fa-check"></i>Added Climate Buddy prompts and browser-saved Field Notes</li>
-                                <li><i class="fas fa-check"></i>Added circular Action Rings while preserving the existing progress bars</li>
-                                <li><i class="fas fa-check"></i>Kept navigation, donation popup, widgets, newsletter flow, Climate Defender, Carbon Catcher, and Watch page features</li>
-                                <li><i class="fas fa-check"></i>Updated version notices, README documentation, and public release notes</li>
-                                <li><i class="fas fa-check"></i>Fixed site load and mobile metadata issues for faster page startup and better mobile rendering</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="history-item stable">
-                        <div class="version-badge">v3.2.0</div>
-                        <div class="history-content">
-                            <h3>Watch Page and SEO Retention Update</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 30, 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Added a new Watch page for YouTube video embeds</li>
-                                <li><i class="fas fa-check"></i>Added heavily styled responsive video slots and watch-next sections</li>
-                                <li><i class="fas fa-check"></i>Added the Watch page to site navigation</li>
-                                <li><i class="fas fa-check"></i>Improved SEO metadata, internal links, and sitemap coverage</li>
-                                <li><i class="fas fa-check"></i>Updated version comments and footers across the website</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="history-item archived">
-                        <div class="version-badge">v3.1.2</div>
-                        <div class="history-content">
-                            <h3>Donation Button</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 17, 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Added a new donation button and popup</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="history-item archived">
-                        <div class="version-badge">v3.0.2</div>
-                        <div class="history-content">
-                            <h3>Appearance Bug Fix</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 10, 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Fixed appearance issues across various components</li>
-                                <li><i class="fas fa-check"></i>Fixed color inconsistencies in the UI</li>
-                                <li><i class="fas fa-check"></i>Fixed color contrast issues in the UI</li>
-                                <li><i class="fas fa-check"></i>Fixed color selector issues with javascript</li>
-                            </ul>
-                        </div>
-                    </div>
-                
-                <div class="history-timeline">
-                    <div class="history-item archived">
-                        <div class="version-badge">v3.0.1</div>
-                        <div class="history-content">
-                            <h3>Navigation, Hero, and Homepage Game Bug Fix</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 10, 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Standardized navigation across user-facing pages</li>
-                                <li><i class="fas fa-check"></i>Added consistent image-backed page heroes</li>
-                                <li><i class="fas fa-check"></i>Consolidated shared CSS and mobile menu behavior</li>
-                                <li><i class="fas fa-check"></i>Added the Climate Defender homepage game</li>
-                            </ul>
-                        </div>
-                    </div>
+    <section id="setup" class="content-card" aria-labelledby="setup-title">
+        <i class="fas fa-screwdriver-wrench" aria-hidden="true"></i>
+        <h2 id="setup-title">Configuration and local setup</h2>
+        <p>Copy <code>.env.example</code> to <code>.env</code> outside version control, then set only the services you use. Public pages render without a database; account, article, order, and donation features require the database variables.</p>
+        <ol class="documentation-list">
+            <li>Set <code>SITE_URL</code> to the public HTTPS URL and <code>SITE_BASE_PATH</code> only if the app lives in a subdirectory.</li>
+            <li>Set <code>DB_HOST</code>, <code>DB_PORT</code>, <code>DB_NAME</code>, <code>DB_USER</code>, and <code>DB_PASSWORD</code> in the deployment environment.</li>
+            <li>Configure SMTP only if <code>send_email.php</code> is used; leave it blank otherwise.</li>
+            <li>Use a PHP-capable host for PHP pages and add the same environment variables in that host’s dashboard.</li>
+        </ol>
+        <p class="note"><strong>Security action:</strong> credentials that were previously committed to the repository must be rotated in their provider dashboards. Removing them from the working tree does not invalidate already exposed values.</p>
+    </section>
 
-                    <div class="history-item archived">
-                        <div class="version-badge">v3.0.0</div>
-                        <div class="history-content">
-                            <h3>Major Home Page Redesign with New Animations</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Large hero redesign with subtle motion and depth</li>
-                                <li><i class="fas fa-check"></i>New scroll reveal and animated section transitions</li>
-                                <li><i class="fas fa-check"></i>Updated stable version to 3.0.0 across homepage and docs</li>
-                            </ul>
-                        </div>
-                    </div>
+    <section aria-labelledby="content-title">
+        <div class="section-heading"><span class="section-kicker">Content map</span><h2 id="content-title">Where visitors can go</h2></div>
+        <div class="resource-grid">
+            <article class="content-card"><h3>Club</h3><p><a href="about.php">About</a>, <a href="projects.php">Projects</a>, and <a href="meetings.php">Meetings</a> explain the mission and current community work.</p></article>
+            <article class="content-card"><h3>Resources</h3><p><a href="articles.php">Articles</a>, <a href="climatechronicle.php">Climate Chronicle</a>, and <a href="watch.php">Watch</a> provide learning paths.</p></article>
+            <article class="content-card"><h3>Participation</h3><p><a href="contact.php">Contact</a> invites ideas and questions. The newsletter link opens a hosted form in a new tab.</p></article>
+        </div>
+    </section>
 
-                
-                <div class="history-timeline">
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.8.1</div>
-                        <div class="history-content">
-                            <h3>Download App Official Installer download issue fixed (Bug Fix)</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Horror Game Official Installer bug fixed</li>
-                            </ul>
-                        </div>
-                    </div>
+    <section class="content-card" aria-labelledby="testing-title">
+        <i class="fas fa-list-check" aria-hidden="true"></i>
+        <h2 id="testing-title">Release checklist</h2>
+        <ul class="documentation-list">
+            <li>Run PHP syntax validation for every application PHP file.</li>
+            <li>Check home, projects, contact, account, and admin paths at desktop and mobile widths.</li>
+            <li>Verify keyboard navigation: skip link, mobile menu, dropdowns, dialogs, forms, and the homepage action tabs.</li>
+            <li>Confirm links, sitemap URLs, canonical URL, and deployment environment variables before publishing.</li>
+            <li>Test a database-unavailable state so public pages stay helpful rather than failing blank.</li>
+        </ul>
+    </section>
 
-                <div class="history-timeline">
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.8</div>
-                        <div class="history-content">
-                            <h3>Download App Official Installer added</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: May 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Horror Game Official Installer added</li>
-                            </ul>
-                        </div>
-                    </div>
-                
-                <div class="history-timeline">
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.7</div>
-                        <div class="history-content">
-                            <h3>Earth Day Happiness</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: April 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i>Earth Day Project Pictures on Home Page</li>
-                            </ul>
-                        </div>
-                    </div>
-       
-                <div class="history-timeline">
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.6</div>
-                        <div class="history-content">
-                            <h3>Widget Integration Suite</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: April 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Accesibilty button</li>
-                            </ul>
-                        </div>
-                    </div>
+    <section class="content-card" aria-labelledby="privacy-title">
+        <i class="fas fa-user-shield" aria-hidden="true"></i>
+        <h2 id="privacy-title">Privacy and data</h2>
+        <p>The homepage saves no personal action data. Newsletter and contact submissions are handled by their linked services. Account data is stored only when the database is configured; passwords are hashed by PHP before storage.</p>
+    </section>
+</main>
 
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.5</div>
-                        <div class="history-content">
-                            <h3>Widget Integration Suite</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: April 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Universal Website Translator</li>
-                                <li><i class="fas fa-check"></i> Dynamic Notification Popups</li>
-                                <li><i class="fas fa-check"></i> Carbon Footprint Calculator</li>
-                                <li><i class="fas fa-check"></i> Home Page Visual Slider</li>
-                                <li><i class="fas fa-check"></i> Privacy & Cookie Consent Framework</li>
-                                <li><i class="fas fa-check"></i> Countdown timer on About Us Page</li>
-                                <li><i class="fas fa-check"></i> Before & After slider on About Us Page and Home Page</li>
-                                <li><i class="fas fa-check"></i> More colors added to Home Page</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.4</div>
-                        <div class="history-content">
-                            <h3>Intelligence & Interaction</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: April 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i> AI Chatbot Beta (Home Page)</li>
-                                <li><i class="fas fa-check"></i> Interactive Environmental Game</li>
-                                <li><i class="fas fa-check"></i> Core Performance Stabilization</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="history-item archived">
-                        <div class="version-badge">v1.3.1</div>
-                        <div class="history-content">
-                            <h3>The Optimization Patch</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Released: March 2026</p>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Real-time update triggers</li>
-                                <li><i class="fas fa-check"></i> Article Commenting System</li>
-                                <li><i class="fas fa-check"></i> Mobile Navigation UX Fixes</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-column">
-                <h2 class="section-title"><i class="fas fa-flask"></i> Beta Features</h2>
-                <p class="versions-subtitle">Experimental builds for testing and feedback.</p>
-                <div class="history-timeline">
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>Command Center Follow-up Testing</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v4.0-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> Testing Smart Stack timing and tab behavior</li>
-                                <li><i class="fas fa-vial"></i> Testing Field Notes localStorage behavior across browsers</li>
-                                <li><i class="fas fa-vial"></i> Watching mobile layout feedback for the action rings and watch-style hero</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>Community Chat Time</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v3.2-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> <b>Community Forum ready for testing!</b></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>Ding Dong Notifications</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v3.1-beta</p>
-                            <ul>
-                                <li><i class="fas fa-sync fa-spin"></i> <b>Working on new notification logic...</b></li>
-                                <li><i class="fas fa-sync fa-spin"></i> <b>Working on accesibility changes...</b></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                <div class="history-timeline">
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>And So It Begins</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v3.0-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> All new v3.0 beta testing ready!</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                <div class="history-timeline">
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>A Big Leap for a Coder</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v2.0-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> All new v2.0 beta testing ready!</li>
-                            </ul>
-                        </div>
-                    </div>
-                
-                <div class="history-timeline">
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>Carbon Catcher Engine</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v1.5.1-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> Performance batch processing</li>
-                                <li><i class="fas fa-sync fa-spin"></i> <b>Optimizing asset loading...</b></li>
-                                <li><i class="fas fa-sync fa-spin"></i> <b>Debugging state persistence...</b></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>Interface Refinement</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v1.5-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> Training new UI widgets</li>
-                                <li><i class="fas fa-vial"></i> Legacy page synchronization</li>
-                                <li><i class="fas fa-vial"></i> Mobile-first responsiveness pass</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="history-item beta">
-                        <div class="version-badge beta-tag">BETA</div>
-                        <div class="history-content">
-                            <h3>Logic Testing</h3>
-                            <p class="release-date"><i class="far fa-calendar-alt"></i> Current: v1.4.1-beta</p>
-                            <ul>
-                                <li><i class="fas fa-vial"></i> Game Engine Stress Testing</li>
-                                <li><i class="fas fa-vial"></i> AI Chatbot Dataset Training</li>
-                                <li><i class="fas fa-vial"></i> Cross-platform LocalStorage logic</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div> 
-    </main>
-<!-- Elfsight Accessibility | Climate Change Club Website Accessibility button -->
-<div class="elfsight-app-55baa1f4-7f05-4b47-be17-ff2f8e6710c7" data-elfsight-app-lazy></div>
-<!-- Elfsight Popup | Beta Member Popup -->
-<div class="elfsight-app-c78f980e-6396-4e3f-9ccb-92de878e304a" data-elfsight-app-lazy></div>
-    <footer class="container text-center py-4">
-        <p><strong><?php echo $siteName; ?></strong> | &copy; 2026 Student-Led Initiative | v4.0.0 | BETA v4.0 | Documentation updated June 29, 2026</p>
-    </footer>
-
-<div class="elfsight-app-f7ca7360-edf8-4dfa-831b-eb1678915d1c" data-elfsight-app-lazy></div>
-</body>
-</html>
- 
-
+<?php include "includes/footer.php"; ?>
