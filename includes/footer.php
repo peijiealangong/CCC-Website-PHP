@@ -16,7 +16,9 @@ define("CCC_FOOTER_INCLUDED", true);
             <a href="<?php echo $basePath ?? ""; ?>about.php">About</a>
             <a href="<?php echo $basePath ?? ""; ?>projects.php">Projects</a>
             <a href="<?php echo $basePath ?? ""; ?>articles.php">Articles</a>
+            <a href="<?php echo $basePath ?? ""; ?>reasons.php">Why it matters</a>
             <a href="<?php echo $basePath ?? ""; ?>contact.php">Contact</a>
+            <a href="<?php echo $basePath ?? ""; ?>changelog.php">Changelog</a>
         </nav>
         <p class="footer-meta">&copy; <?php echo date("Y"); ?> <?php echo htmlspecialchars($siteName ?? "Climate Change Club", ENT_QUOTES, "UTF-8"); ?>. Built for learning, sharing, and action.</p>
     </div>

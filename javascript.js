@@ -38,7 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
     initClimateDefenderWhenReady();
     initBetaForm();
     initActionPlanner();
+    initV27Utilities();
 });
+
+function initV27Utilities() {
+    const progress = document.createElement("div");
+    progress.className = "reading-progress";
+    progress.setAttribute("aria-hidden", "true");
+    document.body.prepend(progress);
+    const backToTop = document.createElement("button");
+    backToTop.className = "back-to-top";
+    backToTop.type = "button";
+    backToTop.setAttribute("aria-label", "Back to top");
+    backToTop.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
+    document.body.append(backToTop);
+    const updateChrome = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.transform = `scaleX(${scrollable > 0 ? window.scrollY / scrollable : 0})`;
+        backToTop.classList.toggle("is-visible", window.scrollY > 520);
+    };
+    window.addEventListener("scroll", updateChrome, { passive: true });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    updateChrome();
+}
 
 function ensureMainLandmark() {
     const main = document.querySelector("main");

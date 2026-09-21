@@ -4,8 +4,11 @@ Climate Change Club is a PHP website for student-led climate action. It presents
 
 ## What is in this release
 
-Version 5.0.0 focuses on clarity and reliability:
+Version 27.1 focuses on speed, discoverability, and a more polished experience:
 
+- Full-width responsive visual system with a reading progress indicator and back-to-top control.
+- Organization structured data, richer social previews, security headers, and updated sitemap coverage.
+- Public release history in `changelog.php` and `CHANGELOG.md`.
 - An action-first homepage with a guided next-step picker, real progress states, and fewer interruptions.
 - Responsive navigation, a keyboard skip link, visible focus states, and keyboard-accessible action tabs.
 - Environment-based site, database, and SMTP configuration.

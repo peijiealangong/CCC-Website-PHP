@@ -38,6 +38,13 @@ $canonicalUrl = $siteURL . $requestPath;
 $styleVersion = (string) (@filemtime(__DIR__ . "/../style.css") ?: "1");
 $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 
+// Keep public pages cache-friendly while avoiding stale HTML after deploys.
+if (!headers_sent()) {
+    header("X-Content-Type-Options: nosniff");
+    header("Referrer-Policy: strict-origin-when-cross-origin");
+    header("Permissions-Policy: geolocation=(), microphone=(), camera=()");
+}
+
 ?>
 
 
@@ -56,6 +63,7 @@ $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 <meta name="robots" content="index, follow, max-image-preview:large" />
 
 <meta name="theme-color" content="#0f3d38" />
+<meta name="color-scheme" content="light" />
 
 
 <link rel="canonical" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, "UTF-8"); ?>" />
@@ -68,22 +76,38 @@ $scriptVersion = (string) (@filemtime(__DIR__ . "/../javascript.js") ?: "1");
 <meta property="og:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, "UTF-8"); ?>" />
 
 <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, "UTF-8"); ?>" />
+<meta property="og:site_name" content="Climate Change Club" />
+<meta property="og:image" content="<?php echo htmlspecialchars($siteURL . "/images/stop-climate-change-background.webp", ENT_QUOTES, "UTF-8"); ?>" />
 
 
 <meta name="twitter:card" content="summary_large_image" />
 
 <meta name="twitter:title" content="<?php echo htmlspecialchars($pageTitle, ENT_QUOTES, "UTF-8"); ?>" />
 <meta name="twitter:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, "UTF-8"); ?>" />
+<meta name="twitter:image" content="<?php echo htmlspecialchars($siteURL . "/images/stop-climate-change-background.webp", ENT_QUOTES, "UTF-8"); ?>" />
 
 
 
 <title><?php echo htmlspecialchars($pageTitle, ENT_QUOTES, "UTF-8"); ?></title>
+
+<script type="application/ld+json">
+<?php echo json_encode([
+    "@context" => "https://schema.org",
+    "@type" => "Organization",
+    "name" => $siteName,
+    "url" => $siteURL,
+    "description" => $pageDescription,
+    "logo" => $siteURL . "/images/stop-climate-change-background.webp"
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>
+</script>
 
 
 
 <link rel="stylesheet" href="<?php echo $basePath; ?>style.css?v=<?php echo $styleVersion; ?>">
 
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 
@@ -228,6 +252,12 @@ Articles
 <li>
 <a href="<?php echo $basePath; ?>climatechronicle.php">
 The Climate Chronicle
+</a>
+</li>
+
+<li>
+<a href="<?php echo $basePath; ?>reasons.php">
+Why climate action matters
 </a>
 </li>
 
