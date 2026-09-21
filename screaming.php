@@ -19,8 +19,6 @@ include "includes/header.php";
         <p>No single choice solves the crisis. But communities can create momentum when many people make practical choices, share what they learn, and keep asking for better systems.</p>
         <a class="btn-primary" href="projects.php"><i class="fas fa-bolt" aria-hidden="true"></i> Find a project</a>
     </article>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

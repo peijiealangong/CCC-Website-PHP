@@ -1,8 +1,9 @@
 <?php
+require_once "includes/auth.php";
+requireLogin();
+
 $siteName = "Climate Change Club";
 include "includes/header.php";
-include "includes/auth.php";
-requireLogin();
 include "includes/database.php";
 
 $user = null;

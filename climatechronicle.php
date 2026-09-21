@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "The Climate Chronicle | Climate Change Club";
+$pageDescription = "Explore Climate Chronicle stories, student observations, and approachable global-warming context.";
 include "includes/header.php";
 include "includes/database.php";
 

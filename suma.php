@@ -18,8 +18,6 @@ include "includes/header.php";
         <p>The beach itself appeared remarkably clean, and the nearby aquarium and conservation work showed how education and stewardship can live side by side.</p>
         <p>Local habits matter, too. Washing and sorting waste carefully can make recycling and disposal more effective. Small routines add up when an entire community takes part.</p>
     </article>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

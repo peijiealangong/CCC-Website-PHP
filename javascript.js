@@ -1,8 +1,4 @@
-/**
- * CLIMATE CHANGE CLUB - MASTER CORE SCRIPT
- * Version: 5.0.0
- * Beta Version: 5.0
- */
+/** Climate Change Club v28 client behavior. */
 
 const LATEST_BETA_VERSION = "5.0";
 const SCRIPT_SOURCES = {
@@ -15,35 +11,32 @@ const scriptLoaders = new Map();
 
 document.addEventListener("DOMContentLoaded", () => {
     ensureMainLandmark();
-    initTheme();
-    initThemePickers();
     initMobileNav();
     initActiveNavigation();
-    initBetaAuthNav();
-    initBetaNotification();
-    initAmbientMusic();
-    initEcoPopup();
     initLazyEmbeds();
     initDonatePopup();
-    scheduleMemberCount();
-    setupPersistentNewsletter();
-    initVideoPromo();
     initScrollReveal();
-    setupUpdateNotification();
-    setupUpdateNotificationBETA();
-    initSmartStack();
-    initClimateBuddy();
-    initFieldNotes();
-    initMiniGame();
-    initClimateDefenderWhenReady();
-    initBetaForm();
-    initActionPlanner();
-    initV27Utilities();
+    initV28Utilities();
+
+    if (document.querySelector("[data-action-choice]")) initActionPlanner();
+    if (document.querySelector("[data-open-donate]")) initSmartStack();
+    if (document.getElementById("confettiTrigger")) setupPersistentNewsletter();
+    if (document.getElementById("member-count")) scheduleMemberCount();
+    if (document.getElementById("bgMusic")) initAmbientMusic();
+    if (document.getElementById("coachMessage")) initClimateBuddy();
+    if (document.getElementById("climateNoteInput")) initFieldNotes();
+    if (document.getElementById("gameModal")) initMiniGame();
+    if (document.getElementById("defenderCanvas")) initClimateDefenderWhenReady();
+    if (document.getElementById("betaForm")) initBetaForm();
+    if (document.querySelector("[data-beta-logout]")) {
+        initBetaAuthNav();
+        initBetaNotification();
+    }
 });
 
-function initV27Utilities() {
+function initV28Utilities() {
     const progress = document.createElement("div");
-    progress.className = "reading-progress";
+    progress.className = "site-progress";
     progress.setAttribute("aria-hidden", "true");
     document.body.prepend(progress);
     const backToTop = document.createElement("button");
@@ -54,7 +47,8 @@ function initV27Utilities() {
     document.body.append(backToTop);
     const updateChrome = () => {
         const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        progress.style.transform = `scaleX(${scrollable > 0 ? window.scrollY / scrollable : 0})`;
+        const ratio = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+        progress.style.transform = `scaleX(${ratio})`;
         backToTop.classList.toggle("is-visible", window.scrollY > 520);
     };
     window.addEventListener("scroll", updateChrome, { passive: true });
@@ -177,38 +171,6 @@ function fireConfetti(options) {
         .catch(() => {});
 }
 
-window.showCelebration = function showCelebration() {
-    alert("Time to celebrate. You reached the near end of the page, and less than 12% of viewers do that. Thank you for your support.");
-    fireConfetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.7 }
-    });
-};
-
-function initTheme() {
-    const savedColor = localStorage.getItem("bgColor");
-    if (savedColor) {
-        document.documentElement.style.setProperty("--bg-color", savedColor);
-    }
-}
-
-function initThemePickers() {
-    document.querySelectorAll("[data-theme-color]").forEach((button) => {
-        button.addEventListener("click", () => changeColor(button.getAttribute("data-theme-color") || ""));
-    });
-}
-
-function changeColor(color) {
-    if (color) {
-        document.documentElement.style.setProperty("--bg-color", color);
-        localStorage.setItem("bgColor", color);
-    } else {
-        document.documentElement.style.removeProperty("--bg-color");
-        localStorage.removeItem("bgColor");
-    }
-}
-
 function betaSignOut() {
     localStorage.removeItem("betaLoggedIn");
     sessionStorage.removeItem("betaLoggedIn");
@@ -281,7 +243,7 @@ function initMobileNav() {
     });
 
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 980) {
+        if (window.innerWidth > 1120) {
             setMenuOpen(false);
         }
     });
@@ -291,23 +253,27 @@ function initActiveNavigation() {
     const path = window.location.pathname.split("/").pop() || "index.php";
     const sectionByPage = {
         "index.php": "home",
-        "about.php": "club",
-        "projects.php": "club",
-        "meetings.php": "club",
-        "stages.php": "club",
-        "notices.php": "resources",
-        "articles.php": "resources",
-        "climatechronicle.php": "resources",
-        "download.php": "resources",
-        "watch.php": "watch",
-        "treeshapes.html": "resources",
-        "egg.html": "resources",
-        "screaming.html": "resources",
-        "suma.html": "resources",
+        "about.php": "about",
+        "projects.php": "projects",
+        "meetings.php": "learn",
+        "stages.php": "about",
+        "notices.php": "more",
+        "articles.php": "learn",
+        "climatechronicle.php": "learn",
+        "reasons.php": "learn",
+        "download.php": "more",
+        "watch.php": "learn",
+        "treeshapes.php": "learn",
+        "egg.php": "learn",
+        "screaming.php": "learn",
+        "suma.php": "learn",
         "contact.php": "contact",
-        "beta-test.php": "beta",
-        "beta-docs.php": "beta",
-        "beta-report.php": "beta"
+        "profile.php": "account",
+        "my-orders.php": "account",
+        "beta-test.php": "more",
+        "beta-docs.php": "more",
+        "beta-report.php": "more",
+        "changelog.php": "more"
     };
 
     const currentSection = sectionByPage[path];
@@ -319,6 +285,7 @@ function initActiveNavigation() {
         const linkPath = new URL(href, window.location.href).pathname.replace(/\/$/, "/index.php");
         if (linkPath === currentPath) {
             link.classList.add("active");
+            link.setAttribute("aria-current", "page");
         }
     });
 
@@ -354,87 +321,6 @@ function initBetaNotification() {
     });
 }
 
-function triggerNewNotification() {
-    const dot = document.getElementById("updateDot");
-    if (dot) {
-        dot.classList.add("is-visible");
-    }
-}
-
-function handleUpdateSequence(btn, version, redirectUrl) {
-    if (!btn) return;
-    btn.innerHTML = "Updating...";
-    btn.style.opacity = "0.7";
-    btn.style.cursor = "not-allowed";
-    btn.disabled = true;
-
-    setTimeout(() => {
-        btn.innerHTML = "Refreshing...";
-        setTimeout(() => {
-            localStorage.setItem("appVersion", version);
-            window.location.href = redirectUrl;
-        }, 900);
-    }, 900);
-}
-
-function dismissUpdatePopup(popup) {
-    if (!popup) return;
-    popup.classList.remove("show");
-}
-
-function setupUpdateNotification() {
-    const updatePopup = document.getElementById("updatePopup");
-    const updateBtn = document.getElementById("updateBtn");
-    const updateClose = updatePopup ? updatePopup.querySelector(".popup-close") : null;
-    const currentVersion = "5.0.0";
-    const dismissedKey = `dismissedUpdatePopup-${currentVersion}`;
-
-    if (!updatePopup || !updateBtn) return;
-
-    if (localStorage.getItem("appVersion") !== currentVersion && localStorage.getItem(dismissedKey) !== "true") {
-        const delay = window.matchMedia("(max-width: 700px)").matches ? 12000 : 10000;
-        window.setTimeout(() => updatePopup.classList.add("show"), delay);
-    }
-
-    if (updateClose) {
-        updateClose.addEventListener("click", () => {
-            dismissUpdatePopup(updatePopup);
-            localStorage.setItem(dismissedKey, "true");
-        });
-    }
-
-    updateBtn.addEventListener("click", () => {
-        handleUpdateSequence(updateBtn, currentVersion, "index.php");
-    });
-}
-
-function setupUpdateNotificationBETA() {
-    const updatePopup = document.getElementById("updatePopupBETA");
-    const updateBtn = updatePopup ? updatePopup.querySelector("button.btn-primary") : null;
-    const updateClose = updatePopup ? updatePopup.querySelector(".popup-close") : null;
-    const isBetaLoggedIn = localStorage.getItem("betaLoggedIn") || sessionStorage.getItem("betaLoggedIn");
-    const currentVersion = "5.0";
-    const dismissedKey = `dismissedUpdatePopup-${currentVersion}`;
-
-    if (!isBetaLoggedIn || !updatePopup || !updateBtn) return;
-
-    if (localStorage.getItem("appVersion") !== currentVersion && localStorage.getItem(dismissedKey) !== "true") {
-        updatePopup.classList.add("show");
-        updatePopup.style.bottom = "104px";
-    }
-
-    if (updateClose) {
-        updateClose.addEventListener("click", () => {
-            dismissUpdatePopup(updatePopup);
-            localStorage.setItem(dismissedKey, "true");
-        });
-    }
-
-    updateBtn.addEventListener("click", () => {
-        handleUpdateSequence(updateBtn, currentVersion, "beta-login.php");
-    });
-}
-
 function initAmbientMusic() {
     const music = document.getElementById("bgMusic");
     const musicButton = document.getElementById("musicBtn");
@@ -453,16 +339,6 @@ function initAmbientMusic() {
             musicButton.style.background = "#173f2f";
         }
     });
-}
-
-function initEcoPopup() {
-    const popup = document.getElementById("promoPopup");
-    if (!popup || sessionStorage.getItem("hasSeenEcoPopup")) return;
-
-    setTimeout(() => {
-        popup.style.display = "flex";
-        sessionStorage.setItem("hasSeenEcoPopup", "true");
-    }, 5000);
 }
 
 function initDonatePopup() {
@@ -729,24 +605,6 @@ function initFieldNotes() {
         status.textContent = "Note cleared.";
         input.focus();
     });
-}
-
-function initVideoPromo() {
-    const popup = document.getElementById("videoPromoPopup");
-    const close = document.getElementById("closeVideoPromo");
-    if (!popup) return;
-    if (window.matchMedia("(max-width: 700px)").matches) return;
-
-    setTimeout(() => {
-        popup.classList.add("show");
-        popup.setAttribute("aria-hidden", "false");
-    }, 10000);
-    if (close) {
-        close.addEventListener("click", () => {
-            popup.classList.remove("show");
-            popup.setAttribute("aria-hidden", "true");
-        });
-    }
 }
 
 function initScrollReveal() {

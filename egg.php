@@ -19,8 +19,6 @@ include "includes/header.php";
         <p>Our current thought is that a person or animal may have moved it. We will update this article if we learn more, and we welcome respectful observations from the community.</p>
         <a class="btn-primary" href="contact.php"><i class="fas fa-comment" aria-hidden="true"></i> Share an observation</a>
     </article>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

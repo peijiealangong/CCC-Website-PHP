@@ -20,8 +20,6 @@ include "includes/header.php";
         <img src="images/treepic%20(2).jpeg" alt="An unusual tree shape from the Vancouver visit" loading="lazy">
         <p>We will keep updating this field article as we learn more about Vancouver's forests and the people who care for them.</p>
     </article>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

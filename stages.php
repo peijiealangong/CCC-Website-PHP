@@ -17,8 +17,6 @@ include "includes/header.php";
         <article class="feature-card"><i class="fas fa-seedling" aria-hidden="true"></i><h2>Growth stage</h2><p>Next, we will expand outreach, add projects, and make better decisions together.</p></article>
         <article class="feature-card"><i class="fas fa-earth-americas" aria-hidden="true"></i><h2>Future goals</h2><p>Long-term work includes broader partnerships, fundraising, and environmental advocacy.</p></article>
     </section>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

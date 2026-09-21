@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "Contact Climate Change Club";
+$pageDescription = "Contact Climate Change Club with a project idea, question, resource, or climate-action opportunity.";
 include "includes/header.php";
 ?>
 
@@ -51,7 +53,5 @@ include "includes/header.php";
     </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init({ publicKey: "nP3uTecuX7yRltzvW" });</script>
 <script src="sendEmail.js" defer></script>
 <?php include "includes/footer.php"; ?>

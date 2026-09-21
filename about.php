@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "About Climate Change Club | Student-Led Climate Action";
+$pageDescription = "Learn how Climate Change Club helps students turn climate concern into practical local action, shared learning, and community projects.";
 include "includes/header.php";
 ?>
 
@@ -36,8 +38,6 @@ include "includes/header.php";
         <p>As the weather gets warmer, we are planning to plant one tree for every $10 we raise. This summer, we are setting up a lemonade stand to help raise that money. Follow the club for project updates, local opportunities, and ways to help.</p>
         <a class="btn-primary" href="projects.php"><i class="fas fa-seedling" aria-hidden="true"></i> Explore projects</a>
     </section>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

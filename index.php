@@ -29,16 +29,16 @@ $treePercent = min(100, round(($totalTrees / $treeGoal) * 100));
     <section class="home-hero v5-hero" aria-labelledby="home-title">
         <div class="v5-hero-copy reveal-on-scroll">
             <p class="eyebrow"><i class="fas fa-sparkles" aria-hidden="true"></i> Student-led climate action</p>
-            <h1 id="home-title">Small actions. <span>Real momentum.</span></h1>
-            <p class="hero-lede">Climate Change Club turns curiosity into practical projects, shared learning, and a stronger local community. Start with one meaningful step today.</p>
+            <h1 id="home-title">Climate action, <span>made local.</span></h1>
+            <p class="hero-lede">Climate Change Club helps students turn concern into projects, shared learning, and meaningful progress close to home.</p>
             <div class="hero-actions">
-                <a class="btn-primary" href="#take-action"><i class="fas fa-seedling" aria-hidden="true"></i> Find my next step</a>
-                <a class="btn-secondary" href="projects.php"><i class="fas fa-arrow-right" aria-hidden="true"></i> Explore projects</a>
+                <a class="btn-primary" href="projects.php"><i class="fas fa-seedling" aria-hidden="true"></i> Explore projects</a>
+                <a class="btn-secondary" href="reasons.php">Why it matters <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
             <dl class="hero-trust-list" aria-label="Club focus areas">
-                <div><dt>Learn</dt><dd>Clear, useful climate resources</dd></div>
-                <div><dt>Act</dt><dd>Projects with a local impact</dd></div>
-                <div><dt>Share</dt><dd>Ideas that grow through community</dd></div>
+                <div><dt>Learn</dt><dd>Clear climate context</dd></div>
+                <div><dt>Act</dt><dd>Local projects to join</dd></div>
+                <div><dt>Connect</dt><dd>A welcoming community</dd></div>
             </dl>
         </div>
 
@@ -58,8 +58,8 @@ $treePercent = min(100, round(($totalTrees / $treeGoal) * 100));
     <section id="take-action" class="action-planner reveal-on-scroll" aria-labelledby="action-title">
         <div class="section-intro">
             <p class="eyebrow">Choose a starting point</p>
-            <h2 id="action-title">Your next climate action, made simple</h2>
-            <p>Pick what feels useful right now. The club will point you to a clear next step — no experience required.</p>
+            <h2 id="action-title">Find your way into the work</h2>
+            <p>Choose the path that feels useful right now. No expertise required.</p>
         </div>
         <div class="action-planner-grid">
             <div class="action-choice-list" role="tablist" aria-label="Choose an action path">
@@ -77,19 +77,19 @@ $treePercent = min(100, round(($totalTrees / $treeGoal) * 100));
             <article class="action-result" id="action-project" role="tabpanel" aria-labelledby="tab-project" data-action-panel="project">
                 <span class="result-number">01</span>
                 <h3>Start where your energy is</h3>
-                <p>Explore tree planting, recycling, and student-led sustainability work. Choose one project you would be excited to support.</p>
+                <p>Explore tree planting, recycling, and student-led sustainability work. Start with a project you would be excited to support.</p>
                 <a class="btn-primary" href="projects.php">View active projects</a>
             </article>
             <article class="action-result" id="action-learn" role="tabpanel" aria-labelledby="tab-learn" data-action-panel="learn" hidden>
                 <span class="result-number">02</span>
                 <h3>Learn one thing worth sharing</h3>
-                <p>Use the video hub or Climate Chronicle to find a clear idea, then talk it through with someone you know.</p>
+                <p>Find one useful idea in the video hub or Climate Chronicle, then share it with someone you know.</p>
                 <a class="btn-primary" href="watch.php">Open the video hub</a>
             </article>
             <article class="action-result" id="action-share" role="tabpanel" aria-labelledby="tab-share" data-action-panel="share" hidden>
                 <span class="result-number">03</span>
                 <h3>Turn one conversation into momentum</h3>
-                <p>Share a project idea, ask about the next meeting, or invite someone who cares about the same issue.</p>
+                <p>Bring a project idea, ask about the next meeting, or invite someone who cares about the same issue.</p>
                 <a class="btn-primary" href="contact.php">Send the club a message</a>
             </article>
         </div>

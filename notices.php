@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "Club Updates and Notices | Climate Change Club";
+$pageDescription = "Read current Climate Change Club updates, project milestones, and website release information.";
 include "includes/header.php";
 ?>
 
@@ -36,8 +38,6 @@ include "includes/header.php";
             <article class="log-item"><span class="badge b-new">Resources</span><p>The Watch page brings club videos, explainers, and project updates together.</p></article>
         </div>
     </section>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

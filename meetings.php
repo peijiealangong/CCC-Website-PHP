@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "Meetings and Events | Climate Change Club";
+$pageDescription = "Find out how to join Climate Change Club meetings, workshops, and community climate-action events.";
 include "includes/header.php";
 ?>
 
@@ -31,8 +33,6 @@ include "includes/header.php";
             <p>Students, families, educators, and community members can all help shape the next action.</p>
         </article>
     </section>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

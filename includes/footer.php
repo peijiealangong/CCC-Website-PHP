@@ -5,22 +5,43 @@ if (defined("CCC_FOOTER_INCLUDED")) {
 }
 define("CCC_FOOTER_INCLUDED", true);
 
+$footerBasePath = $basePath ?? "";
 ?>
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <span class="brand-mark" aria-hidden="true">CCC</span>
-            <div><strong><?php echo htmlspecialchars($siteName ?? "Climate Change Club", ENT_QUOTES, "UTF-8"); ?></strong><p>Student-led climate action, made practical.</p></div>
+            <span class="brand-mark" aria-hidden="true"><i class="fas fa-leaf"></i><span>CCC</span></span>
+            <div>
+                <strong><?php echo htmlspecialchars($siteName ?? "Climate Change Club", ENT_QUOTES, "UTF-8"); ?></strong>
+                <p>Student-led climate action, made practical.</p>
+            </div>
         </div>
-        <nav class="footer-nav" aria-label="Footer navigation">
-            <a href="<?php echo $basePath ?? ""; ?>about.php">About</a>
-            <a href="<?php echo $basePath ?? ""; ?>projects.php">Projects</a>
-            <a href="<?php echo $basePath ?? ""; ?>articles.php">Articles</a>
-            <a href="<?php echo $basePath ?? ""; ?>reasons.php">Why it matters</a>
-            <a href="<?php echo $basePath ?? ""; ?>contact.php">Contact</a>
-            <a href="<?php echo $basePath ?? ""; ?>changelog.php">Changelog</a>
-        </nav>
-        <p class="footer-meta">&copy; <?php echo date("Y"); ?> <?php echo htmlspecialchars($siteName ?? "Climate Change Club", ENT_QUOTES, "UTF-8"); ?>. Built for learning, sharing, and action.</p>
+
+        <div class="footer-links">
+            <nav aria-label="Explore the club">
+                <h2>Explore</h2>
+                <a href="<?php echo $footerBasePath; ?>projects.php">Projects</a>
+                <a href="<?php echo $footerBasePath; ?>meetings.php">Meetings</a>
+                <a href="<?php echo $footerBasePath; ?>about.php">About</a>
+            </nav>
+            <nav aria-label="Learning resources">
+                <h2>Learn</h2>
+                <a href="<?php echo $footerBasePath; ?>watch.php">Watch</a>
+                <a href="<?php echo $footerBasePath; ?>articles.php">Articles</a>
+                <a href="<?php echo $footerBasePath; ?>reasons.php">Why it matters</a>
+            </nav>
+            <nav aria-label="Get involved">
+                <h2>Get involved</h2>
+                <a href="<?php echo $footerBasePath; ?>contact.php">Contact the club</a>
+                <a href="<?php echo $footerBasePath; ?>changelog.php">Changelog</a>
+                <a href="<?php echo $footerBasePath; ?>download.php">Downloads</a>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <?php echo date("Y"); ?> <?php echo htmlspecialchars($siteName ?? "Climate Change Club", ENT_QUOTES, "UTF-8"); ?>.</p>
+            <p>Made for learning, sharing, and local action.</p>
+        </div>
     </div>
 </footer>
 </body>

@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "Downloads | Climate Change Club";
+$pageDescription = "Explore Climate Change Club learning tools, games, and official application download links.";
 include "includes/header.php";
 ?>
 
@@ -57,8 +59,6 @@ include "includes/header.php";
             <a class="btn-secondary" href="contact.php">Contact the club</a>
         </article>
     </section>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

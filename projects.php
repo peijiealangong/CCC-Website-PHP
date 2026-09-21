@@ -1,5 +1,7 @@
 <?php
 $siteName = "Climate Change Club";
+$pageTitle = "Climate Projects | Climate Change Club";
+$pageDescription = "Explore Climate Change Club projects, including tree planting, recycling, student presentations, and local fundraising.";
 include "includes/header.php";
 ?>
 
@@ -47,8 +49,6 @@ include "includes/header.php";
             <p>We are exploring ways to support trusted conservation organizations while continuing to fund local tree-planting work.</p>
         </article>
     </section>
-
-    <?php include "includes/theme-picker.php"; ?>
 </main>
 
 <?php include "includes/footer.php"; ?>

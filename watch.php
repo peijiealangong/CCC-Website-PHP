@@ -1,4 +1,8 @@
-<?php include "includes/header.php"; ?>
+<?php
+$pageTitle = "Watch Climate Videos | Climate Change Club";
+$pageDescription = "Watch student-led climate explainers, project updates, and practical climate action stories from Climate Change Club.";
+include "includes/header.php";
+?>
 
 
 <header class="watch-hero" aria-labelledby="watch-title">
