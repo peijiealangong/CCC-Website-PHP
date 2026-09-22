@@ -66,6 +66,7 @@ if (!headers_sent()) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="<?php echo $basePath; ?>style.css?v=<?php echo $styleVersion; ?>">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>v28-enhancements.css">
     <script src="<?php echo $basePath; ?>javascript.js?v=<?php echo $scriptVersion; ?>" defer></script>
 </head>
 <body data-page="<?php echo htmlspecialchars($pageKey, ENT_QUOTES, "UTF-8"); ?>">
