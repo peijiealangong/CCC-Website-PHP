@@ -26,8 +26,8 @@ $treePercent = min(100, round(($totalTrees / $treeGoal) * 100));
 ?>
 
 <main id="main-content" class="site-home">
-    <section class="home-hero v5-hero" aria-labelledby="home-title">
-        <div class="v5-hero-copy reveal-on-scroll">
+    <section class="home-hero hero" aria-labelledby="home-title">
+        <div class="hero-content reveal-on-scroll">
             <p class="eyebrow"><i class="fas fa-sparkles" aria-hidden="true"></i> Student-led climate action</p>
             <h1 id="home-title">Climate action, <span>made local.</span></h1>
             <p class="hero-lede">Climate Change Club helps students turn concern into projects, shared learning, and meaningful progress close to home.</p>

@@ -73,13 +73,13 @@ if (!headers_sent()) {
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
-        <div class="site-header-inner">
+        <div class="site-nav">
             <a class="nav-logo" href="<?php echo $basePath; ?>index.php" aria-label="Climate Change Club home">
                 <span class="brand-mark" aria-hidden="true"><i class="fas fa-leaf"></i><span>CCC</span></span>
                 <span class="site-brand-copy"><strong>Climate Change Club</strong><small>Student-led local action</small></span>
             </a>
 
-            <nav class="site-nav" aria-label="Main navigation">
+            <nav class="site-nav-inner" aria-label="Main navigation">
                 <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
                     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </button>

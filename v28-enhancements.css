@@ -80,16 +80,7 @@
     font-weight: 600;
 }
 
-/* Homepage hero: stronger focal point */
-.v5-hero {
-    padding-block: clamp(76px, 11vw, 138px);
-}
-
-.v5-hero h1 {
-    font-size: clamp(2.6rem, 6.5vw, 5rem);
-    line-height: 1.05;
-    margin-bottom: 18px;
-}
+/* Homepage hero: stronger focal point (legacy .v5-hero selectors removed) */
 
 .hero-lede {
     font-size: clamp(1.05rem, 1.8vw, 1.25rem);
@@ -191,9 +182,7 @@ textarea:focus {
 
 /* Responsive refinements */
 @media (max-width: 900px) {
-    .v5-hero {
-        padding-block: clamp(64px, 9vw, 96px);
-    }
+    /* Legacy .v5-hero selector removed */
     
     .explore-card {
         padding: 28px;

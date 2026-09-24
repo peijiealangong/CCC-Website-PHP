@@ -14,7 +14,7 @@ Version 28.0 represents a major design consolidation that unifies the visual sys
 - **Accessibility refinements** including improved focus states, keyboard navigation, and semantic HTML structure.
 - **Performance optimization** through consolidated CSS patterns and removal of redundant styles.
 
-Previous v27.x releases added:
+Previous v28.x releases added:
 - Full-width responsive visual system with reading progress indicator and back-to-top control.
 - Organization structured data, richer social previews, security headers, and updated sitemap coverage.
 - Public release history in `changelog.php` and `CHANGELOG.md`.

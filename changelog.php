@@ -28,7 +28,7 @@ include "includes/header.php";
         </article>
         <article class="release-card">
             <div class="release-meta"><span class="release-badge">Previous</span><time datetime="2026-09-21">September 21, 2026</time></div>
-            <h2>Version 27.3 — Admin improvements</h2>
+            <h2>Version 28.0 — Major redesign and site-wide cleanup</h2>
             <ul>
                 <li>Refreshed the admin workspace with icon-based navigation, overview metrics, and responsive tables.</li>
                 <li>Added clearer "view site" and control-center actions for administrators.</li>
